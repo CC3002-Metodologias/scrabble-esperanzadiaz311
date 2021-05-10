@@ -26,15 +26,16 @@ public class Scrabble_Bool implements IScrabble_Type {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Scrabble_Bool that = (Scrabble_Bool) o;
-        return b == that.b;
+    public boolean equals(Object obj) {
+        if (obj instanceof Scrabble_Bool) {
+            final var o = (Scrabble_Bool) obj;
+            return this.getClass() == o.getClass() && this.getBoolean() == o.getBoolean();
+        }
+        return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(b);
+        return Objects.hash(getClass(), getBoolean());
     }
 }

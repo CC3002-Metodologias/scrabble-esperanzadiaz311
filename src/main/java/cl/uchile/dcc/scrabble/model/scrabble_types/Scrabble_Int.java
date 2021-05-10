@@ -1,5 +1,7 @@
 package cl.uchile.dcc.scrabble.model.scrabble_types;
 
+import java.util.Objects;
+
 public class Scrabble_Int implements IScrabble_Type {
     int n;
     public Scrabble_Int(int n){
@@ -7,7 +9,7 @@ public class Scrabble_Int implements IScrabble_Type {
     }
     @Override
     public String toString(){
-        int num = this.getN();
+        int num = this.getInt();
         return Integer.toString(num);
     }
 
@@ -30,7 +32,21 @@ public class Scrabble_Int implements IScrabble_Type {
 
     //public Scrabble_Binary toBinary(){};
 
-    public int getN() {
+    public int getInt() {
         return n;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj instanceof Scrabble_Int) {
+            final var o = (Scrabble_Int) obj;
+            return this.getClass() == o.getClass() && this.getInt() == o.getInt();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getClass(), getInt());
     }
 }

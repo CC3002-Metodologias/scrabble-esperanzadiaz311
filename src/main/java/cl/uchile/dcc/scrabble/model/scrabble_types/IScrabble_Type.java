@@ -2,12 +2,13 @@ package cl.uchile.dcc.scrabble.model.scrabble_types;
 
 public interface IScrabble_Type {
     /**
-     * @return the element turned into a Java String
+     * @return
      */
     String toString();
 
     /**
-     * @return the element turned into a Scrabble String
+     * @return
      */
     Scrabble_String toScrabbleString();
 }
+

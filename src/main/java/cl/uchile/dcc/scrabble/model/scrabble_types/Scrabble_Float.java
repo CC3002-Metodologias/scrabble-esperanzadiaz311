@@ -21,7 +21,7 @@ public class Scrabble_Float implements IScrabble_Type {
     }
 
     public Scrabble_Float toFloat() {
-        return new Scrabble_Float(Float.valueOf(toString()));
+        return new Scrabble_Float(Double.valueOf(toString()));
     }
 
     public double getFloat() {
@@ -30,14 +30,11 @@ public class Scrabble_Float implements IScrabble_Type {
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
+        if (obj instanceof Scrabble_Float) {
+            final var o = (Scrabble_Float) obj;
+            return this.getClass() == o.getClass() && this.getFloat() == o.getFloat();
         }
-        if (!(obj instanceof Scrabble_Float)) {
-            return false;
-        }
-        final var o = (Scrabble_Float) obj;
-        return this.getClass() == o.getClass() && this.getFloat() == o.getFloat();
+        return false;
     }
 
     @Override

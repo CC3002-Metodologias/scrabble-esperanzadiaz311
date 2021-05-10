@@ -8,7 +8,7 @@ public abstract class builtWithString implements IScrabble_Type {
 
     @Override
     public String toString(){
-        String str = this.getS();
+        String str = this.getString();
         return str;
     }
 
@@ -17,7 +17,7 @@ public abstract class builtWithString implements IScrabble_Type {
         return new Scrabble_String(this.toString());
     }
 
-    public String getS() {
+    public String getString() {
         return s;
     }
 }
