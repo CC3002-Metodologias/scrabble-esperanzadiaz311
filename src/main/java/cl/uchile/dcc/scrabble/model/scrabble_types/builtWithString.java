@@ -1,4 +1,4 @@
-package cl.uchile.dcc.scrabble.gui.scrabble_types;
+package cl.uchile.dcc.scrabble.model.scrabble_types;
 
 public abstract class builtWithString implements IScrabble_Type {
     private String s;
@@ -20,8 +20,5 @@ public abstract class builtWithString implements IScrabble_Type {
     public String getS() {
         return s;
     }
-
-    public void setS(String s) {
-        this.s = s;
-    }
 }
+

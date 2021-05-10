@@ -1,4 +1,4 @@
-package cl.uchile.dcc.scrabble.gui.scrabble_types;
+package cl.uchile.dcc.scrabble.model.scrabble_types;
 
 /**
  *

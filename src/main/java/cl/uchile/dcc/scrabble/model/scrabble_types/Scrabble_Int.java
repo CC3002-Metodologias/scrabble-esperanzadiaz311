@@ -1,4 +1,4 @@
-package cl.uchile.dcc.scrabble.gui.scrabble_types;
+package cl.uchile.dcc.scrabble.model.scrabble_types;
 
 public class Scrabble_Int implements IScrabble_Type {
     int n;
@@ -23,11 +23,14 @@ public class Scrabble_Int implements IScrabble_Type {
         return new Scrabble_Float(Float.valueOf(this.toString()));
     }
 
+    /**
+     * @return
+     */
+    public Scrabble_Int toInt(){ return new Scrabble_Int(Integer.valueOf(this.toString())); }
+
+    //public Scrabble_Binary toBinary(){};
+
     public int getN() {
         return n;
-    }
-
-    public void setN(int n) {
-        this.n = n;
     }
 }
