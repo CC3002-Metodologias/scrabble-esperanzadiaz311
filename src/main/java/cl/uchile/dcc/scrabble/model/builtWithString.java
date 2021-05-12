@@ -5,11 +5,11 @@ package cl.uchile.dcc.scrabble.model;
  * who needs a Java String to be created
  * @author Esperanza Díaz Adaro
  */
-public abstract class builtWithString implements IScrabble_Type{
+public abstract class builtWithString implements IScrabble_Type, IbuiltWithString{
     private String s;
 
     /** Creates an object that is built from a Java String
-     * @param s, the String that is going to be used in the constructor
+     * @param s the String that is going to be used in the constructor
      */
     public builtWithString(String s){ this.s = s; }
 
@@ -20,6 +20,6 @@ public abstract class builtWithString implements IScrabble_Type{
 
     public abstract Scrabble_String toScrabbleString();
 
-    /** Returns the String used in the constructor */
+    @Override
     public String getString(){ return s; }
 }

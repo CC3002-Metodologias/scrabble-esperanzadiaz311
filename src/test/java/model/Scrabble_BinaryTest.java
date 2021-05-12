@@ -56,8 +56,8 @@ public class Scrabble_BinaryTest {
     @Test
     void toBinaryTest(){
         Scrabble_Binary expected = new Scrabble_Binary("101100001");
-        assertEquals(expected, bin2);
-        assertEquals(expected.hashCode(), bin2.hashCode());
+        assertEquals(expected, bin2.toBinary());
+        assertEquals(expected.hashCode(), (bin2.toBinary()).hashCode());
     }
 
 }
