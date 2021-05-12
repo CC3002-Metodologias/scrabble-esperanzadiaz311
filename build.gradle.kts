@@ -36,6 +36,7 @@ dependencies {
         name = "annotations",
         version = jbAnnotationsVersion
     )
+    implementation("org.junit.jupiter:junit-jupiter:5.7.0")
     testImplementation(
         group = "org.junit.jupiter", name = "junit-jupiter-api",
         version = junitVersion
