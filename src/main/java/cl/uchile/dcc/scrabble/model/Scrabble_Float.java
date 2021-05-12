@@ -2,6 +2,10 @@ package cl.uchile.dcc.scrabble.model;
 
 import java.util.Objects;
 
+/**
+ * Represents the float type data of Scrabble
+ * @author Esperanza Díaz Adaro
+ */
 public class Scrabble_Float implements IScrabble_Type{
     public double f;
 
@@ -23,16 +27,12 @@ public class Scrabble_Float implements IScrabble_Type{
         return new Scrabble_String(this.toString());
     }
 
-    /** Transforms the Scrabble Float into a Scrabble Float
-     * @return a new Scrabble Float
-     */
+    /** Returns the same Scrabble Float */
     public Scrabble_Float toFloat(){
-        return new Scrabble_Float(Double.valueOf(this.toString()));
+        return this;
     }
 
-    /**
-     * @return the double used in the constructor
-     */
+    /** Returns the double used in the constructor */
     public double getFloat(){ return f; }
 
     @Override

@@ -2,6 +2,10 @@ package cl.uchile.dcc.scrabble.model;
 
 import java.util.Objects;
 
+/**
+ * Represents the int data type of Scrabble
+ * @author Esperanza Díaz Adaro
+ */
 public class Scrabble_Int implements IScrabble_Type{
     public int n;
 
@@ -30,16 +34,12 @@ public class Scrabble_Int implements IScrabble_Type{
         return new Scrabble_Float(Double.valueOf(this.toString()));
     }
 
-    /** Transforms the Scrabble Int into a Scrabble Int
-     * @return a new Scrabble Int
-     */
+    /** Returns the same Scrabble Int */
     public Scrabble_Int toInt(){
-        return new Scrabble_Int(Integer.valueOf(this.toString()));
+        return this;
     }
 
-    /**
-     * @return the int used in the constructor
-     */
+    /** Returns the int used in the constructor */
     public int getInt(){
         return n;
     }

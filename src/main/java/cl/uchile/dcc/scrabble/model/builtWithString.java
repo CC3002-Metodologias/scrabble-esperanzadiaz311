@@ -1,5 +1,10 @@
 package cl.uchile.dcc.scrabble.model;
 
+/**
+ * This class contains the necessary elements for the subclasses
+ * who needs a Java String to be created
+ * @author Esperanza Díaz Adaro
+ */
 public abstract class builtWithString implements IScrabble_Type{
     private String s;
 
@@ -13,13 +18,8 @@ public abstract class builtWithString implements IScrabble_Type{
         return this.getString();
     }
 
-    @Override
-    public Scrabble_String toScrabbleString(){
-        return new Scrabble_String(this.toString());
-    }
+    public abstract Scrabble_String toScrabbleString();
 
-    /**
-     * @return the String used in the constructor
-     */
+    /** Returns the String used in the constructor */
     public String getString(){ return s; }
 }

@@ -28,12 +28,15 @@ public class Scrabble_FloatTest {
     void constructorTest(){
         Scrabble_Float expected = new Scrabble_Float(3.19);
 
+        // same class and value
         assertEquals(expected, s_float);
         assertEquals(expected.hashCode(), s_float.hashCode());
 
+        // different class
         assertNotEquals(expected, s_int);
         assertNotEquals(expected.hashCode(), s_int.hashCode());
 
+        // same class, different value
         assertNotEquals(expected, s_float2);
         assertNotEquals(expected.hashCode(), s_float2.hashCode());
 

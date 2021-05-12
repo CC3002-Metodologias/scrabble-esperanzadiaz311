@@ -6,8 +6,8 @@ public interface IScrabble_Type {
      */
     String toString();
 
-    /** Takes the Scrabble type and transforms it into a Scrabble String, even
-     * if already is a Scrabble String
+    /** Takes the Scrabble type and transforms it into a Scrabble String. If the
+     * type is Scrabble String, it returns the same object
      * @return the Scrabble type turned into
      * a Scrabble String
      */

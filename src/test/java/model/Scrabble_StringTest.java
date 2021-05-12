@@ -27,12 +27,15 @@ public class Scrabble_StringTest {
     void constructorTest(){
         Scrabble_String expected = new Scrabble_String("testing");
 
+        // same class and value
         assertEquals(expected, str1);
         assertEquals(expected.hashCode(), str1.hashCode());
 
+        // same class, different value
         assertNotEquals(expected, str2);
         assertNotEquals(expected.hashCode(), str2.hashCode());
 
+        // different class
         assertNotEquals(expected, int1);
         assertNotEquals(expected.hashCode(), int1.hashCode());
     }

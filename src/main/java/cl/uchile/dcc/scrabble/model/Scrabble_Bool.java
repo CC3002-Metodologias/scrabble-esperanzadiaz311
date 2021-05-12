@@ -2,6 +2,10 @@ package cl.uchile.dcc.scrabble.model;
 
 import java.util.Objects;
 
+/**
+ * Represents the boolean (bool) data type of Scrabble
+ * @author Esperanza Díaz Adaro
+ */
 public class Scrabble_Bool implements IScrabble_Type{
     public boolean b;
 
@@ -22,16 +26,12 @@ public class Scrabble_Bool implements IScrabble_Type{
         return new Scrabble_String(this.toString());
     }
 
-    /** Transforms a Scrabble Bool into a new Scrabble Bool
-     * @return a new Scrabble Bool
-     */
+    /** Returns the same Scrabble Bool */
     public Scrabble_Bool toBool(){
-        return new Scrabble_Bool(Boolean.valueOf(this.toString()));
+        return this;
     }
 
-    /**
-     * @return the boolean used in the constructor
-     */
+    /** Returns the boolean used in the constructor */
     public boolean getBoolean(){
         return b;
     }

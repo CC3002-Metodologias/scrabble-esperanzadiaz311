@@ -26,12 +26,15 @@ public class Scrabble_BinaryTest {
     void constructorTest(){
         Scrabble_Binary expected = new Scrabble_Binary("010110");
 
+        // same class and value
         assertEquals(expected, bin1);
         assertEquals(expected.hashCode(), bin1.hashCode());
 
+        // different class
         assertNotEquals(expected, str1);
         assertNotEquals(expected.hashCode(), str1.hashCode());
 
+        // same class, different value
         assertNotEquals(expected, bin2);
         assertNotEquals(expected.hashCode(), bin2.hashCode());
 
@@ -48,6 +51,13 @@ public class Scrabble_BinaryTest {
         Scrabble_String expected = new Scrabble_String("010110");
         assertEquals(expected, bin1.toScrabbleString());
         assertEquals(expected.hashCode(), (bin1.toScrabbleString()).hashCode());
+    }
+
+    @Test
+    void toBinaryTest(){
+        Scrabble_Binary expected = new Scrabble_Binary("101100001");
+        assertEquals(expected, bin2);
+        assertEquals(expected.hashCode(), bin2.hashCode());
     }
 
 }
