@@ -12,9 +12,9 @@ public class Scrabble_StringTest {
     private Scrabble_String str1;
     private Scrabble_String str2;
     private Scrabble_Int int1;
-    private String s = "testing";
-    private String s2 = "new testing";
-    private int num = 4532;
+    private final String s = "testing";
+    private final String s2 = "new testing";
+    private final int num = 4532;
 
     @BeforeEach
     void setUp(){

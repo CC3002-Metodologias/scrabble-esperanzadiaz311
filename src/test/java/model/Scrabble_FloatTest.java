@@ -13,9 +13,9 @@ public class Scrabble_FloatTest {
     private Scrabble_Float s_float;
     private Scrabble_Float s_float2;
     private Scrabble_Int s_int;
-    private double float1 = 3.19;
-    private double float2 = 4367.786401;
-    private int int1 = 5;
+    private final double float1 = 3.19;
+    private final double float2 = 4367.786401;
+    private final int int1 = 5;
 
     @BeforeEach
     void setUp(){

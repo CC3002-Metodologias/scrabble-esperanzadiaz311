@@ -3,11 +3,8 @@ package cl.uchile.dcc.scrabble.model;
 import java.util.Objects;
 
 public class Scrabble_String extends builtWithString{
-    private String s;
+    public String s;
 
-    /**
-     * @param s
-     */
     public Scrabble_String(String s){ super(s);}
 
     @Override

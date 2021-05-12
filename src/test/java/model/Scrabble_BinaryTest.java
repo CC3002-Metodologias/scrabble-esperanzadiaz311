@@ -12,8 +12,8 @@ public class Scrabble_BinaryTest {
     private Scrabble_Binary bin1;
     private Scrabble_Binary bin2;
     private Scrabble_String str1;
-    private String value = "010110";
-    private String value2 = "101100001";
+    private final String value = "010110";
+    private final String value2 = "101100001";
 
     @BeforeEach
     void setUp(){

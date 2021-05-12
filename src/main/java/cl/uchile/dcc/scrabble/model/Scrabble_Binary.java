@@ -3,6 +3,7 @@ package cl.uchile.dcc.scrabble.model;
 import java.util.Objects;
 
 public class Scrabble_Binary extends builtWithString{
+
     public Scrabble_Binary(String s){ super(s); }
 
     @Override

@@ -5,6 +5,9 @@ import java.util.Objects;
 public class Scrabble_Float implements IScrabble_Type{
     public double f;
 
+    /** Creates a Scrabble Float from a double
+     * @param f the number (double type) that's going the be used
+     */
     public Scrabble_Float(double f){
         this.f = f;
     }
@@ -20,10 +23,16 @@ public class Scrabble_Float implements IScrabble_Type{
         return new Scrabble_String(this.toString());
     }
 
+    /** Transforms the Scrabble Float into a Scrabble Float
+     * @return a new Scrabble Float
+     */
     public Scrabble_Float toFloat(){
         return new Scrabble_Float(Double.valueOf(this.toString()));
     }
 
+    /**
+     * @return the double used in the constructor
+     */
     public double getFloat(){ return f; }
 
     @Override

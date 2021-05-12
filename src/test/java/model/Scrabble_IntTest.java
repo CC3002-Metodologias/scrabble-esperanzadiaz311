@@ -13,9 +13,9 @@ public class Scrabble_IntTest {
     private Scrabble_Int s_int;
     private Scrabble_Int s_int2;
     private Scrabble_Binary s_bin;
-    private int value = 101219;
-    private int value2 = 456724;
-    private String str = "101219";
+    private final int value = 101219;
+    private final int value2 = 456724;
+    private final String str = "101219";
 
     @BeforeEach
     void setUp(){

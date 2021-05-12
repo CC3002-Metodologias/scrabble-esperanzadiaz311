@@ -12,9 +12,9 @@ public class Scrabble_BoolTest {
     private Scrabble_Bool s_bool;
     private Scrabble_Bool s_bool2;
     private Scrabble_String s_str;
-    private boolean b = true;
-    private boolean b2 = false;
-    private String str = "true";
+    private final boolean b = true;
+    private final boolean b2 = false;
+    private final String str = "true";
 
     @BeforeEach
     void setUp(){
