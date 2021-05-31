@@ -8,13 +8,15 @@ import java.util.Objects;
  * @author Esperanza Díaz Adaro
  */
 public class Scrabble_String extends BuiltWithString {
-    public String s;
-
     public Scrabble_String(String s){ super(s);}
 
     @Override
     public Scrabble_String toScrabbleString(){
         return new Scrabble_String(this.getString());
+    }
+
+    public Scrabble_String add(IScrabble s){
+        return s.addCalledByString(this);
     }
 
     @Override

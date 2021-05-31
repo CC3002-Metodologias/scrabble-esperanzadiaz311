@@ -1,8 +1,5 @@
 package cl.uchile.dcc.scrabble.model;
 
-import cl.uchile.dcc.scrabble.model.Scrabble_Binary;
-import cl.uchile.dcc.scrabble.model.Scrabble_Bool;
-import cl.uchile.dcc.scrabble.model.Scrabble_String;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -70,10 +67,10 @@ public class Scrabble_BoolTest {
 
     @Test
     void orTest(){
-        Scrabble_Bool expected1 = new Scrabble_Bool(true);
-        Scrabble_Binary expected2 = new Scrabble_Binary("1111111");
-        Scrabble_Binary expected3 = new Scrabble_Binary("1011001");
-        Scrabble_Bool expected4 = new Scrabble_Bool(false);
+        IScrabbleLogical expected1 = new Scrabble_Bool(true);
+        IScrabbleLogical expected2 = new Scrabble_Binary("1111111");
+        IScrabbleLogical expected3 = new Scrabble_Binary("1011001");
+        IScrabbleLogical expected4 = new Scrabble_Bool(false);
         // result true (true || false)
         assertEquals(expected1, s_bool.or(s_bool2));
         assertEquals(expected1.hashCode(), s_bool.or(s_bool2).hashCode());
@@ -96,10 +93,10 @@ public class Scrabble_BoolTest {
 
     @Test
     void andTest(){
-        Scrabble_Bool expected1 = new Scrabble_Bool(true);
-        Scrabble_Binary expected2 = new Scrabble_Binary("0000000");
-        Scrabble_Binary expected3 = new Scrabble_Binary("1011001");
-        Scrabble_Bool expected4 = new Scrabble_Bool(false);
+        IScrabbleLogical expected1 = new Scrabble_Bool(true);
+        IScrabbleLogical expected2 = new Scrabble_Binary("0000000");
+        IScrabbleLogical expected3 = new Scrabble_Binary("1011001");
+        IScrabbleLogical expected4 = new Scrabble_Bool(false);
         // result false (true && false)
         assertEquals(expected4, s_bool.and(s_bool2));
         assertEquals(expected4.hashCode(), s_bool.and(s_bool2).hashCode());
@@ -122,8 +119,8 @@ public class Scrabble_BoolTest {
 
     @Test
     void negationTest(){
-        Scrabble_Bool expected1 = new Scrabble_Bool(true);
-        Scrabble_Bool expected2 = new Scrabble_Bool(false);
+        IScrabbleLogical expected1 = new Scrabble_Bool(true);
+        IScrabbleLogical expected2 = new Scrabble_Bool(false);
 
         assertEquals(expected2, s_bool.not());
         assertEquals(expected2.hashCode(), s_bool.not().hashCode());

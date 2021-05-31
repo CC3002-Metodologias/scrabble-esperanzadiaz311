@@ -1,9 +1,5 @@
 package cl.uchile.dcc.scrabble.model;
 
-import cl.uchile.dcc.scrabble.model.Scrabble_Binary;
-import cl.uchile.dcc.scrabble.model.Scrabble_Float;
-import cl.uchile.dcc.scrabble.model.Scrabble_Int;
-import cl.uchile.dcc.scrabble.model.Scrabble_String;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,15 +9,23 @@ public class Scrabble_IntTest {
     private Scrabble_Int s_int;
     private Scrabble_Int s_int2;
     private Scrabble_Binary s_bin;
-    private final int value = 101219;
-    private final int value2 = 456724;
+    private Scrabble_Binary s_bin2;
+    private Scrabble_Float s_float;
+    private final int i1 = 101219;
+    private final int i2 = 456724;
+    private final int binToInt = -64326;
     private final String str = "101219";
+    private final String bin = "10000000000000001111101101000110";
+    private final double float1 = 7152.47;
 
     @BeforeEach
     void setUp(){
-        s_int = new Scrabble_Int(value);
-        s_int2 = new Scrabble_Int(value2);
+        s_int = new Scrabble_Int(i1);
+        s_int2 = new Scrabble_Int(i2);
         s_bin = new Scrabble_Binary(str);
+        s_bin2 = new Scrabble_Binary(bin);
+        s_float = new Scrabble_Float(float1);
+
     }
 
     @Test
@@ -61,4 +65,78 @@ public class Scrabble_IntTest {
         assertEquals(expected, s_int.toInt());
         assertEquals(expected.hashCode(), (s_int.toInt()).hashCode());
     }
+
+    @Test
+    void addTest(){
+        IScrabbleArithmetic expected1 = new Scrabble_Int(i1 + i2);
+        IScrabbleArithmetic expected2 = new Scrabble_Float(i1 + float1);
+        IScrabbleArithmetic expected3 = new Scrabble_Int(i1 + binToInt);
+        // ScrabbleInt + ScrabbleInt
+        assertEquals(expected1, s_int.add(s_int2));
+        assertEquals(expected1.hashCode(), s_int.add(s_int2).hashCode());
+
+        // ScrabbleInt + ScrabbleFloat
+        assertEquals(expected2, s_int.add(s_float));
+        assertEquals(expected2.hashCode(), s_int.add(s_float).hashCode());
+
+        // ScrabbleInt + ScrabbleBinary
+        assertEquals(expected3, s_int.add(s_bin2));
+        assertEquals(expected3.hashCode(), s_int.add(s_bin2).hashCode());
+
+    }
+
+    @Test
+    void subTest(){
+        IScrabbleArithmetic expected1 = new Scrabble_Int(i1 - i2);
+        IScrabbleArithmetic expected2 = new Scrabble_Float(i1 - float1);
+        IScrabbleArithmetic expected3 = new Scrabble_Int(i1 - binToInt);
+        // ScrabbleInt - ScrabbleInt
+        assertEquals(expected1, s_int.sub(s_int2));
+        assertEquals(expected1.hashCode(), s_int.sub(s_int2).hashCode());
+
+        // ScrabbleInt - ScrabbleFloat
+        assertEquals(expected2, s_int.sub(s_float));
+        assertEquals(expected2.hashCode(), s_int.sub(s_float).hashCode());
+
+        // ScrabbleInt - ScrabbleBinary
+        assertEquals(expected3, s_int.sub(s_bin2));
+        assertEquals(expected3.hashCode(), s_int.sub(s_bin2).hashCode());
+    }
+
+    @Test
+    void multTest(){
+        IScrabbleArithmetic expected1 = new Scrabble_Int(i1 * i2);
+        IScrabbleArithmetic expected2 = new Scrabble_Float(i1 * float1);
+        IScrabbleArithmetic expected3 = new Scrabble_Int(i1 * binToInt);
+        // ScrabbleInt * ScrabbleInt
+        assertEquals(expected1, s_int.mult(s_int2));
+        assertEquals(expected1.hashCode(), s_int.mult(s_int2).hashCode());
+
+        // ScrabbleInt * ScrabbleFloat
+        assertEquals(expected2, s_int.mult(s_float));
+        assertEquals(expected2.hashCode(), s_int.mult(s_float).hashCode());
+
+        // ScrabbleInt * ScrabbleBinary
+        assertEquals(expected3, s_int.mult(s_bin2));
+        assertEquals(expected3.hashCode(), s_int.mult(s_bin2).hashCode());
+    }
+
+    @Test
+    void divTest(){
+        IScrabbleArithmetic expected1 = new Scrabble_Int(i1 / i2);
+        IScrabbleArithmetic expected2 = new Scrabble_Float(i1 / float1);
+        IScrabbleArithmetic expected3 = new Scrabble_Int(i1 / binToInt);
+        // ScrabbleInt / ScrabbleInt
+        assertEquals(expected1, s_int.div(s_int2));
+        assertEquals(expected1.hashCode(), s_int.div(s_int2).hashCode());
+
+        // ScrabbleInt / ScrabbleFloat
+        assertEquals(expected2, s_int.div(s_float));
+        assertEquals(expected2.hashCode(), s_int.div(s_float).hashCode());
+
+        // ScrabbleInt / ScrabbleBinary
+        assertEquals(expected3, s_int.div(s_bin2));
+        assertEquals(expected3.hashCode(), s_int.div(s_bin2).hashCode());
+    }
+
 }

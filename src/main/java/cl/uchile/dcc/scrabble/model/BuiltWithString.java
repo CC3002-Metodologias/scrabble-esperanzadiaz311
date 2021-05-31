@@ -6,7 +6,7 @@ package cl.uchile.dcc.scrabble.model;
  * @author Esperanza Díaz Adaro
  */
 public abstract class BuiltWithString implements IScrabble, IBuiltWithString {
-    private String s;
+    protected String s;
 
     /** Creates an object that is built from a Java String
      * @param s the String that is going to be used in the constructor
@@ -15,10 +15,15 @@ public abstract class BuiltWithString implements IScrabble, IBuiltWithString {
 
     @Override
     public String toString(){
-        return this.getString();
+        return this.s;
     }
 
     public abstract Scrabble_String toScrabbleString();
+
+    @Override
+    public Scrabble_String addCalledByString(Scrabble_String str){
+        return new Scrabble_String(str.getString() + this.s);
+    }
 
     @Override
     public String getString(){ return s; }

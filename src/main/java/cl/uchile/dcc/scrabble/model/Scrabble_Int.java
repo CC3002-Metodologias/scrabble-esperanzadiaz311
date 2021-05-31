@@ -6,7 +6,7 @@ import java.util.Objects;
  * Represents the int data type of Scrabble
  * @author Esperanza Díaz Adaro
  */
-public class Scrabble_Int implements IScrabble {
+public class Scrabble_Int implements IScrabble, IScrabbleArithmetic {
     private int n;
 
     /** Creates a Scrabble Int from a int
@@ -30,6 +30,7 @@ public class Scrabble_Int implements IScrabble {
     /** Transforms the Scrabble Float into a Scrabble Int
      * @return a new Scrabble Float
      */
+    @Override
     public Scrabble_Float toFloat(){
         return new Scrabble_Float(Double.valueOf(this.toString()));
     }
@@ -39,11 +40,100 @@ public class Scrabble_Int implements IScrabble {
         return new Scrabble_Int(this.getInt());
     }
 
-    //@Override
-    //public IScrabbleArithmetic add(IScrabbleArithmetic a){
+    public Scrabble_Binary toBinary(){
+        return null;
+    }
 
-    //}
+    // inicio parte 2
+    @Override
+    public IScrabbleArithmetic add(IScrabbleArithmetic a){
+        return a.addCalledByInt(this);
+    }
 
+    @Override
+    public IScrabbleArithmetic sub(IScrabbleArithmetic s){
+        return s.subCalledByInt(this);
+    }
+
+    @Override
+    public IScrabbleArithmetic mult(IScrabbleArithmetic mlt){
+        return mlt.multCalledByInt(this);
+    }
+
+    @Override
+    public IScrabbleArithmetic div(IScrabbleArithmetic dv){
+        return dv.divCalledByInt(this);
+    }
+
+    @Override
+    public IScrabbleArithmetic addCalledByInt(Scrabble_Int i){
+        return new Scrabble_Int(this.n + i.getInt());
+    }
+
+    @Override
+    public IScrabbleArithmetic addCalledByFloat(Scrabble_Float f){
+        return new Scrabble_Float(this.n + f.getFloat());
+    }
+
+    @Override
+    public IScrabbleArithmetic addCalledByBinary(Scrabble_Binary bin){
+        Scrabble_Int result = new Scrabble_Int(this.n + bin.toInt().getInt());
+        return result.toBinary();
+    }
+
+    @Override
+    public Scrabble_String addCalledByString(Scrabble_String str){
+        return new Scrabble_String(str.getString() + this.n);
+    }
+
+    @Override
+    public IScrabbleArithmetic subCalledByInt(Scrabble_Int i){
+        return new Scrabble_Int(i.getInt() - this.n);
+    }
+
+    @Override
+    public IScrabbleArithmetic subCalledByFloat(Scrabble_Float f){
+        return new Scrabble_Float(f.getFloat() - this.n);
+    }
+
+    @Override
+    public IScrabbleArithmetic subCalledByBinary(Scrabble_Binary bin){
+        Scrabble_Int result = new Scrabble_Int(bin.toInt().getInt() - this.n);
+        return result.toBinary();
+    }
+
+    @Override
+    public IScrabbleArithmetic multCalledByInt(Scrabble_Int i){
+        return new Scrabble_Int(this.n * i.getInt());
+    }
+
+    @Override
+    public IScrabbleArithmetic multCalledByFloat(Scrabble_Float f){
+        return new Scrabble_Float(this.n * f.getFloat());
+    }
+
+    @Override
+    public IScrabbleArithmetic multCalledByBinary(Scrabble_Binary bin){
+        Scrabble_Int result = new Scrabble_Int(this.n * bin.toInt().getInt());
+        return result.toBinary();
+    }
+
+    @Override
+    public IScrabbleArithmetic divCalledByInt(Scrabble_Int i){
+        return new Scrabble_Int(i.getInt() / this.n);
+    }
+
+    @Override
+    public IScrabbleArithmetic divCalledByFloat(Scrabble_Float f){
+        return new Scrabble_Float(f.getFloat() / this.n);
+    }
+
+    @Override
+    public IScrabbleArithmetic divCalledByBinary(Scrabble_Binary bin){
+        Scrabble_Int result = new Scrabble_Int(bin.toInt().getInt() / this.n);
+        return result.toBinary();
+    }
+    // fin parte 2
     /** Returns the int used in the constructor */
     public int getInt(){
         return n;

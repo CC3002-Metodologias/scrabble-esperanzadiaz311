@@ -10,4 +10,6 @@ public interface IScrabble {
      * @return the Scrabble type turned into a Scrabble String
      */
     Scrabble_String toScrabbleString();
+
+    Scrabble_String addCalledByString(Scrabble_String str);
 }

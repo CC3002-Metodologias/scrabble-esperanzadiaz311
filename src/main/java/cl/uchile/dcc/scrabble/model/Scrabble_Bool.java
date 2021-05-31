@@ -43,12 +43,12 @@ public class Scrabble_Bool implements IScrabble, IScrabbleLogical {
     // inicio parte 2
     @Override
     public IScrabbleLogical or(IScrabbleLogical b){
-        return b.orWithBoolean(this);
+        return b.orCalledByBoolean(this);
     }
 
     @Override
     public IScrabbleLogical and(IScrabbleLogical b){
-        return b.orWithBoolean(this);
+        return b.andCalledByBoolean(this);
     }
 
     @Override
@@ -58,33 +58,39 @@ public class Scrabble_Bool implements IScrabble, IScrabbleLogical {
     }
 
     @Override
-    public IScrabbleLogical orWithBoolean(Scrabble_Bool b){
+    public IScrabbleLogical orCalledByBoolean(Scrabble_Bool b){
         return new Scrabble_Bool(this.b || b.getBoolean());
     }
 
     @Override
-    public IScrabbleLogical andWithBoolean(Scrabble_Bool b){
-        return new Scrabble_Bool( this.b || b.getBoolean());
+    public IScrabbleLogical andCalledByBoolean(Scrabble_Bool b){
+        return new Scrabble_Bool( this.b && b.getBoolean());
     }
 
     @Override
-    public Scrabble_Binary orWithBinary(Scrabble_Binary bin){
+    public Scrabble_Binary orCalledByBinary(Scrabble_Binary bin){
         String result = bin.getString();
         if(this.b){
-            result.replace('0', '1');
+            result = result.replace('0', '1');
         }
         return new Scrabble_Binary(result);
     }
 
     @Override
-    public Scrabble_Binary andWithBinary(Scrabble_Binary bin){
+    public Scrabble_Binary andCalledByBinary(Scrabble_Binary bin){
         String result = bin.getString();
         if(!this.b){
-            result.replace('1', '0');
+            result = result.replace('1', '0');
         }
         return new Scrabble_Binary(result);
     }
+
+    @Override
+    public Scrabble_String addCalledByString(Scrabble_String str){
+        return new Scrabble_String(str.getString() + this.b);
+    }
     //fin parte 2*/
+
     @Override
     public boolean equals(Object obj){
         if (obj instanceof Scrabble_Bool){

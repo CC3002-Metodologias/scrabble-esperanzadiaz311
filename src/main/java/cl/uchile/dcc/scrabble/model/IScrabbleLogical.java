@@ -22,23 +22,23 @@ public interface IScrabbleLogical {
      * @param b
      * @return
      */
-    IScrabbleLogical orWithBoolean(Scrabble_Bool b);
+    IScrabbleLogical orCalledByBoolean(Scrabble_Bool b);
 
     /**
      * @param b
      * @return
      */
-    IScrabbleLogical andWithBoolean(Scrabble_Bool b);
+    IScrabbleLogical andCalledByBoolean(Scrabble_Bool b);
 
     /**
      * @param bin
      * @return
      */
-    IScrabbleLogical orWithBinary(Scrabble_Binary bin);
+    IScrabbleLogical orCalledByBinary(Scrabble_Binary bin);
 
     /**
      * @param bin
      * @return
      */
-    IScrabbleLogical andWithBinary(Scrabble_Binary bin);
+    IScrabbleLogical andCalledByBinary(Scrabble_Binary bin);
 }
