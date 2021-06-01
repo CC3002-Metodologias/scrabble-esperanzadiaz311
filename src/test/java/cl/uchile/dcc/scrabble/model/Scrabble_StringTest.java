@@ -67,19 +67,19 @@ public class Scrabble_StringTest {
         Scrabble_String expected3 = new Scrabble_String(s + num);
         Scrabble_String expected4 = new Scrabble_String(s + b);
         Scrabble_String expected5 = new Scrabble_String(s + d);
-        // string + string
+        // Scrabble String + Scrabble String
         assertEquals(expected, str1.add(str2));
         assertEquals(expected.hashCode(), str1.add(str2).hashCode());
-        // string + binary
+        // Scrabble String + Scrabble Binary
         assertEquals(expected2, str1.add(bin1));
         assertEquals(expected2.hashCode(), str1.add(bin1).hashCode());
-        // string + int
+        // Scrabble String + Scrabble Int
         assertEquals(expected3, str1.add(int1));
         assertEquals(expected3.hashCode(), str1.add(int1).hashCode());
-        // string + boolean
+        // Scrabble String + Scrabble Bool
         assertEquals(expected4, str1.add(bool1));
         assertEquals(expected4.hashCode(), str1.add(bool1).hashCode());
-        // string + float
+        // Scrabble String + Scrabble Float
         assertEquals(expected5, str1.add(flt1));
         assertEquals(expected5.hashCode(), str1.add(flt1).hashCode());
     }

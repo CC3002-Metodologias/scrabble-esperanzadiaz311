@@ -36,11 +36,6 @@ public class Scrabble_Bool implements IScrabble, IScrabbleLogical {
         return b;
     }
 
-    /**
-     * @param b
-     * @return
-     */
-    // inicio parte 2
     @Override
     public IScrabbleLogical or(IScrabbleLogical b){
         return b.orCalledByBoolean(this);
@@ -89,7 +84,6 @@ public class Scrabble_Bool implements IScrabble, IScrabbleLogical {
     public Scrabble_String addCalledByString(Scrabble_String str){
         return new Scrabble_String(str.getString() + this.b);
     }
-    //fin parte 2*/
 
     @Override
     public boolean equals(Object obj){

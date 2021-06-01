@@ -8,20 +8,22 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Scrabble_IntTest {
     private Scrabble_Int s_int;
     private Scrabble_Int s_int2;
+    private Scrabble_Int s_int3;
     private Scrabble_Binary s_bin;
     private Scrabble_Binary s_bin2;
     private Scrabble_Float s_float;
     private final int i1 = 101219;
     private final int i2 = 456724;
-    private final int binToInt = -64326;
+    private final int binToInt = -2147318104;
     private final String str = "101219";
-    private final String bin = "10000000000000001111101101000110";
+    private final String bin = "10000000000000101000011010101000"; // -2147318104
     private final double float1 = 7152.47;
 
     @BeforeEach
     void setUp(){
         s_int = new Scrabble_Int(i1);
         s_int2 = new Scrabble_Int(i2);
+        s_int3 = new Scrabble_Int(binToInt);
         s_bin = new Scrabble_Binary(str);
         s_bin2 = new Scrabble_Binary(bin);
         s_float = new Scrabble_Float(float1);
@@ -61,9 +63,19 @@ public class Scrabble_IntTest {
 
     @Test
     void toIntTest(){
-        Scrabble_Int expected = new Scrabble_Int(101219);
+        Scrabble_Int expected = new Scrabble_Int(i1);
         assertEquals(expected, s_int.toInt());
         assertEquals(expected.hashCode(), (s_int.toInt()).hashCode());
+    }
+
+    @Test
+    void toBinaryTest(){
+        Scrabble_Binary expected = new Scrabble_Binary("11000101101100011");
+        Scrabble_Binary expected2 = new Scrabble_Binary("10000000000000101000011010101000");
+        assertEquals(expected, s_int.toBinary());
+        assertEquals(expected.hashCode(), s_int.toBinary().hashCode());
+        assertEquals(expected2, s_int3.toBinary());
+        assertEquals(expected2.hashCode(), s_int3.toBinary().hashCode());
     }
 
     @Test

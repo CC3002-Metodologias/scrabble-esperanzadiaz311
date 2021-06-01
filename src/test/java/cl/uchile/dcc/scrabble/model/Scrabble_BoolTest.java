@@ -83,10 +83,10 @@ public class Scrabble_BoolTest {
         // result true (false || true)
         assertEquals(expected1, s_bool3.or(s_bool4));
         assertEquals(expected1.hashCode(), s_bool3.or(s_bool4).hashCode());
-        // between true and binary
+        // between true and Scrabble Binary
         assertEquals(expected2, s_bool.or(bin1));
         assertEquals(expected2.hashCode(), s_bool.or(bin1).hashCode());
-        // between false and binary
+        // between false and Scrabble Binary
         assertEquals(expected3, s_bool2.or(bin1));
         assertEquals(expected3.hashCode(), s_bool2.or(bin1).hashCode());
     }
@@ -109,10 +109,10 @@ public class Scrabble_BoolTest {
         // result false (false && true)
         assertEquals(expected4, s_bool3.and(s_bool4));
         assertEquals(expected4.hashCode(), s_bool3.and(s_bool4).hashCode());
-        // between true and binary
+        // between true and Scrabble Binary
         assertEquals(expected3, s_bool.and(bin1));
         assertEquals(expected3.hashCode(), s_bool.and(bin1).hashCode());
-        // between false and binary
+        // between false and Scrabble Binary
         assertEquals(expected2, s_bool2.and(bin1));
         assertEquals(expected2.hashCode(), s_bool2.and(bin1).hashCode());
     }

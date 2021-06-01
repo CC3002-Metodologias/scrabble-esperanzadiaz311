@@ -27,7 +27,6 @@ public class Scrabble_Float implements IScrabble, IScrabbleArithmetic {
         return new Scrabble_String(this.toString());
     }
 
-    /** Returns a copy of the same Scrabble Float */
     @Override
     public Scrabble_Float toFloat(){
         return new Scrabble_Float(this.getFloat());
@@ -35,8 +34,6 @@ public class Scrabble_Float implements IScrabble, IScrabbleArithmetic {
 
     /** Returns the double used in the constructor */
     public double getFloat(){ return f; }
-
-    //inicio parte 2
 
     @Override
     public IScrabbleArithmetic add(IScrabbleArithmetic a){
@@ -122,8 +119,6 @@ public class Scrabble_Float implements IScrabble, IScrabbleArithmetic {
     public IScrabbleArithmetic divCalledByBinary(Scrabble_Binary bin){
         return null;
     }
-
-    //fin parte 2
 
     @Override
     public boolean equals(Object obj){

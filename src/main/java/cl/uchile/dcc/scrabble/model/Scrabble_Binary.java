@@ -11,6 +11,29 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
 
     public Scrabble_Binary(String s){ super(s); }
 
+    /** Transforms a negative Scrabble Binary into a Java int */
+    private int negativeBinaryToInt() {
+        int n = 31;
+        int w = -2147483648;
+        for (int i = n, j = 0; i > 0; i--, j++) {
+            w += (int) Math.pow(2, j) * (this.s.charAt(i) == '1' ? 1 : 0);
+        }
+        return w;
+    }
+
+    /** Transforms a positive Scrabble Binary into a Java int */
+    private int positiveBinToInt() {
+        int w = 0;
+        for (int i = this.getString().length() - 1, j = 0; i >= 0; i--, j++) {
+            w += (int) Math.pow(2, i) * bitToInt(this.s.charAt(j));
+        }
+        return w;
+    }
+    /** Transforms a Java char into a Java int */
+    private int bitToInt(char bit) {
+        return bit == '0' ? 0 : 1;
+    }
+
     /** Returns a copy of the same Scrabble Binary */
     public Scrabble_Binary toBinary(){
         return new Scrabble_Binary(this.s);
@@ -21,8 +44,8 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
         return new Scrabble_String(this.s);
     }
 
-    /**
-     * @return
+    /** Transforms a Scrabble Binary into a Scrabble Int
+     * @return a new Scrabble Int with the value of the Scrabble Binary
      */
     public Scrabble_Int toInt() {
         if(this.getString().length() == 32){
@@ -36,34 +59,10 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
         }
     }
 
-    /**
-     * @return
-     */
     @Override
     public Scrabble_Float toFloat(){
         return new Scrabble_Float( ((this.toInt()).toFloat()).getFloat() );
     }
-
-    private int negativeBinaryToInt() {
-        int n = 31;
-        int w = -bitToInt(this.s.charAt(1)) * (int) Math.pow(2, n-1);
-        for (int i = n-2, j = 2; i >= 0; i--, j++) {
-            w -= (int) Math.pow(2, i) * (this.s.charAt(j) == '1' ? 1 : 0);
-        }
-        return w;
-    }
-    private int positiveBinToInt() {
-        int w = 0;
-        for (int i = this.getString().length() - 1, j = 0; i >= 0; i--, j++) {
-            w += (int) Math.pow(2, i) * bitToInt(this.s.charAt(j));
-        }
-        return w;
-    }
-    private int bitToInt(char bit) {
-        return bit == '0' ? 0 : 1;
-    }
-
-    // inicio parte 2
 
     @Override
     public IScrabbleLogical or(IScrabbleLogical l){
@@ -77,15 +76,10 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
 
     @Override
     public IScrabbleLogical not(){
-        char var[] = this.getString().toCharArray();
-        for(int i = 0; i<this.getString().length(); i++){
-            if(var[i] == 1){
-                var[i] = 0;
-            }else{
-                var[i] = 1;
-            }
-        }
-        return new Scrabble_Binary(var.toString());
+        String result = this.getString();
+        result = result.replace('0', '#').replace('1', '%').replace
+                ('#','1').replace('%', '0');
+        return new Scrabble_Binary(result);
     }
     @Override
     public IScrabbleLogical orCalledByBoolean(Scrabble_Bool b){
@@ -198,8 +192,6 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
         Scrabble_Int result = new Scrabble_Int(bin.toInt().getInt() / this.toInt().getInt());
         return result.toBinary();
     }
-
-    // fin parte 2
 
     @Override
     public boolean equals(Object obj){
