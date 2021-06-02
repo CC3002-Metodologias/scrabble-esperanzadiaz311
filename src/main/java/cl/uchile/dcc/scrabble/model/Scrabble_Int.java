@@ -64,7 +64,7 @@ public class Scrabble_Int implements IScrabble, IScrabbleArithmetic {
         }
         return new Scrabble_Binary(bin.toString());
     }
-    
+
     private Scrabble_Binary twosComplement(Scrabble_Binary b){
         StringBuilder result = new StringBuilder(b.not().toString());
         for(int i = result.length()-1; i>=0; i--){
