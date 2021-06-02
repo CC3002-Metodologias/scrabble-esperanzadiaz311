@@ -101,12 +101,55 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
 
     @Override
     public IScrabbleLogical orCalledByBinary(Scrabble_Binary bin){
-        return null;
+        StringBuilder result;
+        int counter;
+        if(bin.getString().length() <= this.s.length()){
+            counter = bin.getString().length();
+            result = new StringBuilder(this.s);
+            for(int i = counter-1; i>=0; i--){
+                if(this.s.charAt(i+(this.s.length() - counter))=='1' || bin.getString().charAt(i) == '1'){
+                    result.setCharAt(i+(this.s.length() - counter), '1');
+                }
+            }
+        }else{
+            counter = this.s.length();
+            result = new StringBuilder(bin.getString());
+            for(int i = counter-1; i>=0; i--){
+                if(this.s.charAt(i)=='1' || bin.getString().charAt(i+(bin.getString().length() - counter)) == '1'){
+                    result.setCharAt(i+(bin.getString().length() - counter), '1');
+                }
+            }
+        }
+
+        return new Scrabble_Binary(result.toString());
     }
 
     @Override
     public IScrabbleLogical andCalledByBinary(Scrabble_Binary bin){
-        return null;
+        StringBuilder result;
+        int counter;
+        if(bin.getString().length() <= this.s.length()){
+            counter = bin.getString().length();
+            result = new StringBuilder(this.s);
+            for(int i = counter-1; i>=0; i--){
+                if(this.s.charAt(i+(this.s.length() - counter))=='1' && bin.getString().charAt(i) == '1') {
+                    result.setCharAt(i+(this.s.length() - counter), '1');
+                }else{
+                    result.setCharAt(i+(this.s.length() - counter), '0');
+                }
+            }
+        }else{
+            counter = this.s.length();
+            result = new StringBuilder(bin.getString());
+            for(int i = counter-1; i>=0; i--){
+                if(this.s.charAt(i)=='1' && bin.getString().charAt(i+(bin.getString().length() - counter)) == '1'){
+                    result.setCharAt(i+(bin.getString().length() - counter), '1');
+                }else{
+                    result.setCharAt(i+(bin.getString().length() - counter), '0');
+                }
+            }
+        }
+        return new Scrabble_Binary(result.toString());
     }
 
     @Override
