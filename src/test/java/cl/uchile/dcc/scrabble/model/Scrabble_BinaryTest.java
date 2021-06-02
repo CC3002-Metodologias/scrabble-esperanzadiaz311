@@ -105,6 +105,7 @@ public class Scrabble_BinaryTest {
     void orTest(){
         IScrabbleLogical expected = new Scrabble_Binary("11111111111111111111111111111111");
         IScrabbleLogical expected2 = new Scrabble_Binary(value4);
+        IScrabbleLogical expected3 = new Scrabble_Binary("00000000000000000000010011111110");
         // Scrabble Binary or Scrabble Bool
             // true
         assertEquals(expected, bin4.or(t));
@@ -112,14 +113,19 @@ public class Scrabble_BinaryTest {
             // false
         assertEquals(expected2, bin4.or(f));
         assertEquals(expected2.hashCode(), bin4.or(f).hashCode());
-        // Scrabble Binary or Scrabble Binary -> null
-        assertNull(bin4.or(bin1));
+        // Scrabble Binary or Scrabble Binary
+        assertEquals(expected3, bin1.or(bin4));
+        assertEquals(expected3.hashCode(), bin1.or(bin4).hashCode());
+
+        assertEquals(expected3, bin4.or(bin1));
+        assertEquals(expected3.hashCode(), bin4.or(bin1).hashCode());
     }
 
     @Test
     void andTest(){
         IScrabbleLogical expected = new Scrabble_Binary("000000");
         IScrabbleLogical expected2 = new Scrabble_Binary(value);
+        IScrabbleLogical expected3 = new Scrabble_Binary("00000000000000000000010011000010");
         // Scrabble Binary and Scrabble Bool
             // true
         assertEquals(expected, bin1.and(f));
@@ -127,8 +133,12 @@ public class Scrabble_BinaryTest {
             // false
         assertEquals(expected2, bin1.and(t));
         assertEquals(expected2.hashCode(), bin1.and(t).hashCode());
-        // Scrabble Binary and Scrabble Binary -> null
-        assertNull(bin1.and(bin2));
+        // Scrabble Binary and Scrabble Binary
+        assertEquals(expected3, bin1.and(bin4));
+        assertEquals(expected3.hashCode(), bin1.and(bin4).hashCode());
+
+        assertEquals(expected3, bin4.and(bin1));
+        assertEquals(expected3.hashCode(), bin4.and(bin1).hashCode());
     }
 
     @Test
