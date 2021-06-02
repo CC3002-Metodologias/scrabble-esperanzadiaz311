@@ -40,6 +40,7 @@ public class Scrabble_Int implements IScrabble, IScrabbleArithmetic {
         return new Scrabble_Int(this.getInt());
     }
 
+    /** Returns a Scrabble Binary */
     public Scrabble_Binary toBinary(){
         int abs_i = Math.abs(this.n);
         Scrabble_Binary b = positiveIntToBinary(abs_i);
@@ -48,6 +49,7 @@ public class Scrabble_Int implements IScrabble, IScrabbleArithmetic {
         }
         return b;
     }
+
     private Scrabble_Binary positiveIntToBinary(int num){
         StringBuilder bin = new StringBuilder("1");
         int index;
@@ -62,6 +64,7 @@ public class Scrabble_Int implements IScrabble, IScrabbleArithmetic {
         }
         return new Scrabble_Binary(bin.toString());
     }
+    
     private Scrabble_Binary twosComplement(Scrabble_Binary b){
         StringBuilder result = new StringBuilder(b.not().toString());
         for(int i = result.length()-1; i>=0; i--){
