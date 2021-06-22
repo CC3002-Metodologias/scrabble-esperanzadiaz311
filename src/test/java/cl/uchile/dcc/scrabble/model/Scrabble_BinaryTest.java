@@ -125,12 +125,12 @@ public class Scrabble_BinaryTest {
     void andTest(){
         IScrabbleLogical expected = new Scrabble_Binary("000000");
         IScrabbleLogical expected2 = new Scrabble_Binary(value);
-        IScrabbleLogical expected3 = new Scrabble_Binary("00000000000000000000010011000010");
+        IScrabbleLogical expected3 = new Scrabble_Binary("000010");
         // Scrabble Binary and Scrabble Bool
-            // true
+            // false
         assertEquals(expected, bin1.and(f));
         assertEquals(expected.hashCode(), bin1.and(f).hashCode());
-            // false
+            // bin1
         assertEquals(expected2, bin1.and(t));
         assertEquals(expected2.hashCode(), bin1.and(t).hashCode());
         // Scrabble Binary and Scrabble Binary

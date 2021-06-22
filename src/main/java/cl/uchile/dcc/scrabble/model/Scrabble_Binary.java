@@ -130,22 +130,22 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
         int counter;
         if(bin.getString().length() <= this.s.length()){
             counter = bin.getString().length();
-            result = new StringBuilder(this.s);
+            result = new StringBuilder(bin.getString());
             for(int i = counter-1; i>=0; i--){
                 if(this.s.charAt(i+(this.s.length() - counter))=='1' && bin.getString().charAt(i) == '1') {
-                    result.setCharAt(i+(this.s.length() - counter), '1');
+                    result.setCharAt(i, '1');
                 }else{
-                    result.setCharAt(i+(this.s.length() - counter), '0');
+                    result.setCharAt(i, '0');
                 }
             }
         }else{
             counter = this.s.length();
-            result = new StringBuilder(bin.getString());
+            result = new StringBuilder(this.s);
             for(int i = counter-1; i>=0; i--){
                 if(this.s.charAt(i)=='1' && bin.getString().charAt(i+(bin.getString().length() - counter)) == '1'){
-                    result.setCharAt(i+(bin.getString().length() - counter), '1');
+                    result.setCharAt(i, '1');
                 }else{
-                    result.setCharAt(i+(bin.getString().length() - counter), '0');
+                    result.setCharAt(i, '0');
                 }
             }
         }
