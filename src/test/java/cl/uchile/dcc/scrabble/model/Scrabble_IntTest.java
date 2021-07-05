@@ -1,5 +1,9 @@
 package cl.uchile.dcc.scrabble.model;
 
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -80,9 +84,9 @@ public class Scrabble_IntTest {
 
     @Test
     void addTest(){
-        IScrabbleArithmetic expected1 = new Scrabble_Int(i1 + i2);
-        IScrabbleArithmetic expected2 = new Scrabble_Float(i1 + float1);
-        IScrabbleArithmetic expected3 = new Scrabble_Int(i1 + binToInt);
+        IScrabble expected1 = new Scrabble_Int(i1 + i2);
+        IScrabble expected2 = new Scrabble_Float(i1 + float1);
+        IScrabble expected3 = new Scrabble_Int(i1 + binToInt);
         // ScrabbleInt + ScrabbleInt
         assertEquals(expected1, s_int.add(s_int2));
         assertEquals(expected1.hashCode(), s_int.add(s_int2).hashCode());
@@ -99,9 +103,9 @@ public class Scrabble_IntTest {
 
     @Test
     void subTest(){
-        IScrabbleArithmetic expected1 = new Scrabble_Int(i1 - i2);
-        IScrabbleArithmetic expected2 = new Scrabble_Float(i1 - float1);
-        IScrabbleArithmetic expected3 = new Scrabble_Int(i1 - binToInt);
+        IScrabble expected1 = new Scrabble_Int(i1 - i2);
+        IScrabble expected2 = new Scrabble_Float(i1 - float1);
+        IScrabble expected3 = new Scrabble_Int(i1 - binToInt);
         // ScrabbleInt - ScrabbleInt
         assertEquals(expected1, s_int.sub(s_int2));
         assertEquals(expected1.hashCode(), s_int.sub(s_int2).hashCode());
@@ -117,9 +121,9 @@ public class Scrabble_IntTest {
 
     @Test
     void multTest(){
-        IScrabbleArithmetic expected1 = new Scrabble_Int(i1 * i2);
-        IScrabbleArithmetic expected2 = new Scrabble_Float(i1 * float1);
-        IScrabbleArithmetic expected3 = new Scrabble_Int(i1 * binToInt);
+        IScrabble expected1 = new Scrabble_Int(i1 * i2);
+        IScrabble expected2 = new Scrabble_Float(i1 * float1);
+        IScrabble expected3 = new Scrabble_Int(i1 * binToInt);
         // ScrabbleInt * ScrabbleInt
         assertEquals(expected1, s_int.mult(s_int2));
         assertEquals(expected1.hashCode(), s_int.mult(s_int2).hashCode());
@@ -135,9 +139,9 @@ public class Scrabble_IntTest {
 
     @Test
     void divTest(){
-        IScrabbleArithmetic expected1 = new Scrabble_Int(i1 / i2);
-        IScrabbleArithmetic expected2 = new Scrabble_Float(i1 / float1);
-        IScrabbleArithmetic expected3 = new Scrabble_Int(i1 / binToInt);
+        IScrabble expected1 = new Scrabble_Int(i1 / i2);
+        IScrabble expected2 = new Scrabble_Float(i1 / float1);
+        IScrabble expected3 = new Scrabble_Int(i1 / binToInt);
         // ScrabbleInt / ScrabbleInt
         assertEquals(expected1, s_int.div(s_int2));
         assertEquals(expected1.hashCode(), s_int.div(s_int2).hashCode());

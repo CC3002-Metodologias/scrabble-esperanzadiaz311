@@ -1,13 +1,18 @@
-package cl.uchile.dcc.scrabble.model;
+package cl.uchile.dcc.scrabble.model.number;
+
+import cl.uchile.dcc.scrabble.model.BuiltWithString;
+import cl.uchile.dcc.scrabble.model.IScrabble;
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_Bool;
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
 
 import java.util.Objects;
 
 /**
  * Subclass of BuiltCalledByString
- * Represents the binary data type of Scrabble
+ * Represents the binary data model of Scrabble
  * @author Esperanza Díaz Adaro.
  */
-public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical, IScrabbleArithmetic{
+public class Scrabble_Binary extends BuiltWithString{
 
     public Scrabble_Binary(String s){ super(s); }
 
@@ -65,24 +70,24 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
     }
 
     @Override
-    public IScrabbleLogical or(IScrabbleLogical l){
+    public IScrabble or(IScrabble l){
         return l.orCalledByBinary(this);
     }
 
     @Override
-    public IScrabbleLogical and(IScrabbleLogical l){
+    public IScrabble and(IScrabble l){
         return l.andCalledByBinary(this);
     }
 
     @Override
-    public IScrabbleLogical not(){
+    public IScrabble not(){
         String result = this.getString();
         result = result.replace('0', '#').replace('1', '%').replace
                 ('#','1').replace('%', '0');
         return new Scrabble_Binary(result);
     }
     @Override
-    public IScrabbleLogical orCalledByBoolean(Scrabble_Bool b){
+    public IScrabble orCalledByBoolean(Scrabble_Bool b){
         String result = this.getString();
         if(b.getBoolean()){
             result = result.replace('0', '1');
@@ -91,7 +96,7 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
     }
 
     @Override
-    public IScrabbleLogical andCalledByBoolean(Scrabble_Bool b){
+    public IScrabble andCalledByBoolean(Scrabble_Bool b){
         String result = this.getString();
         if(!b.getBoolean()){
             result = result.replace('1', '0');
@@ -100,7 +105,7 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
     }
 
     @Override
-    public IScrabbleLogical orCalledByBinary(Scrabble_Binary bin){
+    public IScrabble orCalledByBinary(Scrabble_Binary bin){
         StringBuilder result;
         int counter;
         if(bin.getString().length() <= this.s.length()){
@@ -125,7 +130,7 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
     }
 
     @Override
-    public IScrabbleLogical andCalledByBinary(Scrabble_Binary bin){
+    public IScrabble andCalledByBinary(Scrabble_Binary bin){
         StringBuilder result;
         int counter;
         if(bin.getString().length() <= this.s.length()){
@@ -153,85 +158,85 @@ public class Scrabble_Binary extends BuiltWithString implements IScrabbleLogical
     }
 
     @Override
-    public IScrabbleArithmetic add(IScrabbleArithmetic a){
+    public IScrabble add(IScrabble a){
         return a.addCalledByBinary(this);
     }
 
     @Override
-    public IScrabbleArithmetic sub(IScrabbleArithmetic s){
+    public IScrabble sub(IScrabble s){
         return s.subCalledByBinary(this);
     }
 
     @Override
-    public IScrabbleArithmetic mult(IScrabbleArithmetic mlt){
+    public IScrabble mult(IScrabble mlt){
         return mlt.multCalledByBinary(this);
     }
 
     @Override
-    public IScrabbleArithmetic div(IScrabbleArithmetic dv){
+    public IScrabble div(IScrabble dv){
         return dv.divCalledByBinary(this);
     }
 
     @Override
-    public IScrabbleArithmetic addCalledByInt(Scrabble_Int i){
+    public IScrabble addCalledByInt(Scrabble_Int i){
         return new Scrabble_Int(this.toInt().getInt() + i.getInt());
     }
 
     @Override
-    public IScrabbleArithmetic addCalledByFloat(Scrabble_Float f){
+    public IScrabble addCalledByFloat(Scrabble_Float f){
         return new Scrabble_Float(f.getFloat() + this.toInt().getInt());
     }
 
     @Override
-    public IScrabbleArithmetic addCalledByBinary(Scrabble_Binary bin){
+    public IScrabble addCalledByBinary(Scrabble_Binary bin){
         Scrabble_Int result = new Scrabble_Int(this.toInt().getInt() + bin.toInt().getInt());
         return result.toBinary();
     }
 
     @Override
-    public IScrabbleArithmetic subCalledByInt(Scrabble_Int i){
+    public IScrabble subCalledByInt(Scrabble_Int i){
         return new Scrabble_Int(i.getInt() - this.toInt().getInt());
     }
 
     @Override
-    public IScrabbleArithmetic subCalledByFloat(Scrabble_Float f){
+    public IScrabble subCalledByFloat(Scrabble_Float f){
         return new Scrabble_Float(f.getFloat() - this.toInt().getInt());
     }
 
     @Override
-    public IScrabbleArithmetic subCalledByBinary(Scrabble_Binary bin){
+    public IScrabble subCalledByBinary(Scrabble_Binary bin){
         Scrabble_Int result = new Scrabble_Int(bin.toInt().getInt() - this.toInt().getInt());
         return result.toBinary();
     }
 
     @Override
-    public IScrabbleArithmetic multCalledByInt(Scrabble_Int i){
+    public IScrabble multCalledByInt(Scrabble_Int i){
         return new Scrabble_Int(this.toInt().getInt() * i.getInt());
     }
 
     @Override
-    public IScrabbleArithmetic multCalledByFloat(Scrabble_Float f){
+    public IScrabble multCalledByFloat(Scrabble_Float f){
         return new Scrabble_Float(f.getFloat() * this.toInt().getInt());
     }
 
     @Override
-    public IScrabbleArithmetic multCalledByBinary(Scrabble_Binary bin){
+    public IScrabble multCalledByBinary(Scrabble_Binary bin){
         Scrabble_Int result = new Scrabble_Int(this.toInt().getInt() *  bin.toInt().getInt());
         return result.toBinary();
     }
 
     @Override
-    public IScrabbleArithmetic divCalledByInt(Scrabble_Int i){
+    public IScrabble divCalledByInt(Scrabble_Int i){
         return new Scrabble_Int(i.getInt() / this.toInt().getInt());
     }
 
     @Override
-    public IScrabbleArithmetic divCalledByFloat(Scrabble_Float f){
+    public IScrabble divCalledByFloat(Scrabble_Float f){
         return new Scrabble_Float(f.getFloat() / this.toInt().getInt());
     }
 
     @Override
-    public IScrabbleArithmetic divCalledByBinary(Scrabble_Binary bin){
+    public IScrabble divCalledByBinary(Scrabble_Binary bin){
         Scrabble_Int result = new Scrabble_Int(bin.toInt().getInt() / this.toInt().getInt());
         return result.toBinary();
     }
