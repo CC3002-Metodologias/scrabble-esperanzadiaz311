@@ -124,6 +124,16 @@ public class Scrabble_BinaryTest {
 
         assertEquals(expected3, bin4.or(bin1));
         assertEquals(expected3.hashCode(), bin4.or(bin1).hashCode());
+
+        // ScrabbleBinary || ScrabbleInt
+        assertNull(bin1.or(int1));
+
+        // ScrabbleBinary || ScrabbleFloat
+        assertNull(bin1.or(flt1));
+
+        // ScrabbleBinary || ScrabbleString
+        assertNull(bin1.or(str1));
+
     }
 
     @Test
@@ -144,6 +154,15 @@ public class Scrabble_BinaryTest {
 
         assertEquals(expected3, bin4.and(bin1));
         assertEquals(expected3.hashCode(), bin4.and(bin1).hashCode());
+
+        // ScrabbleBinary && ScrabbleInt
+        assertNull(bin1.and(int1));
+
+        // ScrabbleBinary && ScrabbleFloat
+        assertNull(bin1.and(flt1));
+
+        // ScrabbleBinary && ScrabbleString
+        assertNull(bin1.and(str1));
     }
 
     @Test
@@ -165,6 +184,12 @@ public class Scrabble_BinaryTest {
         assertEquals(expected2.hashCode(), bin2.add(int1).hashCode());
         // Scrabble Binary + Scrabble Float -> null
         assertNull(bin1.add(flt1));
+
+        // ScrabbleBinary + ScrabbleBool
+        assertNull(bin1.add(t));
+
+        // ScrabbleBinary + ScrabbleString
+        assertNull(bin1.add(str1));
     }
 
     @Test
@@ -179,6 +204,12 @@ public class Scrabble_BinaryTest {
         assertEquals(expected2.hashCode(), bin2.sub(int1).hashCode());
         // Scrabble Binary - Scrabble Float -> null
         assertNull(bin4.sub(flt1));
+
+        // ScrabbleBinary - ScrabbleBool
+        assertNull(bin1.sub(t));
+
+        // ScrabbleBinary - ScrabbleString
+        assertNull(bin1.sub(str1));
     }
 
     @Test
@@ -193,6 +224,12 @@ public class Scrabble_BinaryTest {
         assertEquals(expected2.hashCode(), bin1.mult(int1).hashCode());
         // Scrabble Binary - Scrabble Float -> null
         assertNull(bin4.mult(flt1));
+
+        // ScrabbleBinary * ScrabbleBool
+        assertNull(bin1.mult(t));
+
+        // ScrabbleBinary * ScrabbleString
+        assertNull(bin1.mult(str1));
     }
 
     @Test
@@ -211,5 +248,11 @@ public class Scrabble_BinaryTest {
         assertEquals(expected3.hashCode(), bin1.div(int1).hashCode());
         // Scrabble Binary / Scrabble Float -> null
         assertNull(bin4.div(flt1));
+
+        // ScrabbleBinary / ScrabbleBool
+        assertNull(bin1.div(t));
+
+        // ScrabbleBinary / ScrabbleString
+        assertNull(bin1.div(str1));
     }
 }

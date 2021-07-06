@@ -1,5 +1,6 @@
 package cl.uchile.dcc.scrabble.model;
 
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_Bool;
 import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
@@ -16,12 +17,16 @@ public class Scrabble_IntTest {
     private Scrabble_Binary s_bin;
     private Scrabble_Binary s_bin2;
     private Scrabble_Float s_float;
+    private Scrabble_String string;
+    private Scrabble_Bool bool;
     private final int i1 = 101219;
     private final int i2 = 456724;
     private final int binToInt = -2147318104;
     private final String str = "101219";
     private final String bin = "10000000000000101000011010101000"; // -2147318104
+    private final String string_val = "testing";
     private final double float1 = 7152.47;
+    private final boolean t = true;
 
     @BeforeEach
     void setUp(){
@@ -31,6 +36,8 @@ public class Scrabble_IntTest {
         s_bin = new Scrabble_Binary(str);
         s_bin2 = new Scrabble_Binary(bin);
         s_float = new Scrabble_Float(float1);
+        string = new Scrabble_String(string_val);
+        bool = new Scrabble_Bool(t);
 
     }
 
@@ -99,6 +106,12 @@ public class Scrabble_IntTest {
         assertEquals(expected3, s_int.add(s_bin2));
         assertEquals(expected3.hashCode(), s_int.add(s_bin2).hashCode());
 
+        // ScrabbleInt * ScrabbleString
+        assertNull(s_int3.add(string));
+
+        // ScrabbleInt * ScrabbleBool
+        assertNull(s_int3.add(bool));
+
     }
 
     @Test
@@ -117,6 +130,12 @@ public class Scrabble_IntTest {
         // ScrabbleInt - ScrabbleBinary
         assertEquals(expected3, s_int.sub(s_bin2));
         assertEquals(expected3.hashCode(), s_int.sub(s_bin2).hashCode());
+
+        // ScrabbleInt * ScrabbleString
+        assertNull(s_int3.sub(string));
+
+        // ScrabbleInt * ScrabbleBool
+        assertNull(s_int3.sub(bool));
     }
 
     @Test
@@ -135,6 +154,12 @@ public class Scrabble_IntTest {
         // ScrabbleInt * ScrabbleBinary
         assertEquals(expected3, s_int.mult(s_bin2));
         assertEquals(expected3.hashCode(), s_int.mult(s_bin2).hashCode());
+
+        // ScrabbleInt * ScrabbleString
+        assertNull(s_int3.mult(string));
+
+        // ScrabbleInt * ScrabbleBool
+        assertNull(s_int3.mult(bool));
     }
 
     @Test
@@ -153,6 +178,34 @@ public class Scrabble_IntTest {
         // ScrabbleInt / ScrabbleBinary
         assertEquals(expected3, s_int.div(s_bin2));
         assertEquals(expected3.hashCode(), s_int.div(s_bin2).hashCode());
+
+        // ScrabbleInt * ScrabbleString
+        assertNull(s_int3.div(string));
+
+        // ScrabbleInt * ScrabbleBool
+        assertNull(s_int3.div(bool));
     }
 
+    @Test
+    void andTest(){
+        // ScrabbleInt && ScrabbleBinary
+        assertNull(s_int3.and(s_bin));
+
+        // ScrabbleInt && ScrabbleBool
+        assertNull(s_int3.and(s_bin));
+    }
+
+    @Test
+    void orTest(){
+        // ScrabbleInt || ScrabbleBinary
+        assertNull(s_int3.or(s_bin));
+
+        // ScrabbleInt || ScrabbleBool
+        assertNull(s_int3.or(s_bin));
+    }
+
+    @Test
+    void notTest(){
+        assertNull(s_int3.not());
+    }
 }

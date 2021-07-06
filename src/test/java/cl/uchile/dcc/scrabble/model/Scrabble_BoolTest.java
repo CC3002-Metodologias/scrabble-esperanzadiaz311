@@ -3,11 +3,12 @@ package cl.uchile.dcc.scrabble.model;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
 import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_Bool;
 import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Scrabble_BoolTest {
     private Scrabble_Bool s_bool;
@@ -16,10 +17,14 @@ public class Scrabble_BoolTest {
     private Scrabble_Bool s_bool4;
     private Scrabble_String s_str;
     private Scrabble_Binary bin1;
+    private Scrabble_Float s_float;
+    private Scrabble_Int s_int;
     private final boolean b = true;
     private final boolean b2 = false;
     private final String str = "true";
     private final String str2 = "1011001";
+    private final double value = 23432.43;
+    private final int value2 = 26647;
 
     @BeforeEach
     void setUp(){
@@ -29,6 +34,8 @@ public class Scrabble_BoolTest {
         s_bool4 = new Scrabble_Bool(b);
         s_str = new Scrabble_String(str);
         bin1 = new Scrabble_Binary(str2);
+        s_float = new Scrabble_Float(value);
+        s_int = new Scrabble_Int(value2);
     }
 
     @Test
@@ -92,6 +99,15 @@ public class Scrabble_BoolTest {
         // between false and Scrabble Binary
         assertEquals(expected3, s_bool2.or(bin1));
         assertEquals(expected3.hashCode(), s_bool2.or(bin1).hashCode());
+
+        // between Scrabble Bool and Scrabble Float
+        assertNull(s_bool.or(s_float));
+
+        // between Scrabble Bool and Scrabble Int
+        assertNull(s_bool.or(s_int));
+
+        // between Scrabble Bool and Scrabble String
+        assertNull(s_bool.or(s_str));
     }
 
     @Test
@@ -118,10 +134,19 @@ public class Scrabble_BoolTest {
         // between false and Scrabble Binary
         assertEquals(expected2, s_bool2.and(bin1));
         assertEquals(expected2.hashCode(), s_bool2.and(bin1).hashCode());
+
+        // between Scrabble Bool and Scrabble Float
+        assertNull(s_bool.and(s_float));
+
+        // between Scrabble Bool and Scrabble Int
+        assertNull(s_bool.and(s_int));
+
+        // between Scrabble Bool and Scrabble String
+        assertNull(s_bool.and(s_str));
     }
 
     @Test
-    void negationTest(){
+    void notTest(){
         IScrabble expected1 = new Scrabble_Bool(true);
         IScrabble expected2 = new Scrabble_Bool(false);
 
@@ -130,5 +155,38 @@ public class Scrabble_BoolTest {
 
         assertEquals(expected1, s_bool2.not());
         assertEquals(expected1.hashCode(), s_bool2.not().hashCode());
+    }
+
+    @Test
+    void toFloatTest(){
+        assertNull(s_bool.toFloat());
+    }
+
+    @Test
+    void addTest(){
+        assertNull(s_bool.add(bin1));
+        assertNull(s_bool.add(s_str));
+        assertNull(s_bool.add(s_bool2));
+    }
+
+    @Test
+    void subTest(){
+        assertNull(s_bool.sub(bin1));
+        assertNull(s_bool.sub(s_str));
+        assertNull(s_bool.sub(s_bool2));
+    }
+
+    @Test
+    void multTest(){
+        assertNull(s_bool.mult(bin1));
+        assertNull(s_bool.mult(s_str));
+        assertNull(s_bool.mult(s_bool2));
+    }
+
+    @Test
+    void divTest(){
+        assertNull(s_bool.div(bin1));
+        assertNull(s_bool.div(s_str));
+        assertNull(s_bool.div(s_bool2));
     }
 }
