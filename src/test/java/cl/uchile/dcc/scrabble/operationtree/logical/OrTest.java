@@ -7,6 +7,11 @@ import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 import cl.uchile.dcc.scrabble.operationtree.Component;
+import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Add;
+import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Div;
+import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Mult;
+import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Sub;
+import cl.uchile.dcc.scrabble.operationtree.operators.logical.And;
 import cl.uchile.dcc.scrabble.operationtree.operators.logical.Or;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,7 +57,9 @@ public class OrTest extends TreeLogicalTest {
         or23 = new Or(l9, l5); // Leaves: ScrabbleBool, ScrabbleFloat
         or24 = new Or(l9, l3); // Leaves: ScrabbleBool, ScrabbleString
         or25 = new Or(l9, l7); // Leaves: ScrabbleBool, ScrabbleBinary
-        
+
+        bigTree = new Or(new Add(new Sub(l7, l8), new Mult(l1, new Div(l1, l2))), l10);
+
         comps = new Component[] {or1, or2, or3, or4, or5, or6, or7, or8, or9, or10, or11, or12, or13, or14,
                 or15, or16, or17, or18, or19, or20, or21, or22, or23, or24, or25};
     }
@@ -123,6 +130,11 @@ public class OrTest extends TreeLogicalTest {
         IScrabble expected12 = new Scrabble_Binary("111111111");
         assertEquals(expected12, or25.calculate());
         assertEquals(expected12.hashCode(), or25.calculate().hashCode());
+
+        // multiple operations tree
+        IScrabble expectedValue = new Scrabble_Binary("100110011");
+        assertEquals(expectedValue, bigTree.calculate());
+        assertEquals(expectedValue.hashCode(), bigTree.calculate().hashCode());
     }
 
     @Test

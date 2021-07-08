@@ -1,17 +1,17 @@
 package cl.uchile.dcc.scrabble.operationtree.logical;
 
 import cl.uchile.dcc.scrabble.model.IScrabble;
-import cl.uchile.dcc.scrabble.model.factories.SBoolFactory;
 import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_Bool;
 import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
-import cl.uchile.dcc.scrabble.operationtree.Component;
-import cl.uchile.dcc.scrabble.operationtree.TreeTest;
-import cl.uchile.dcc.scrabble.operationtree.operators.Leaf;
-import cl.uchile.dcc.scrabble.operationtree.operators.logical.And;
+import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Add;
+import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Div;
+import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Mult;
+import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Sub;
 import cl.uchile.dcc.scrabble.operationtree.operators.logical.Not;
+import cl.uchile.dcc.scrabble.operationtree.operators.logical.Or;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +30,8 @@ public class NotTest extends TreeLogicalTest {
         not3 = new Not(l5);
         not4 = new Not(l7);
         not5 = new Not(l9);
+
+        bigTree = new Not(new Or(new Add(new Sub(l7, l8), new Mult(l1, new Div(l1, l2))), l10));
     }
 
     @Test
@@ -48,6 +50,11 @@ public class NotTest extends TreeLogicalTest {
         IScrabble expected2 = new Scrabble_Bool(false);
         assertEquals(expected2, not5.calculate());
         assertEquals(expected2.hashCode(), not5.calculate().hashCode());
+
+        // multiple operations tree
+        IScrabble expectedValue = new Scrabble_Binary("011001100");
+        assertEquals(expectedValue, bigTree.calculate());
+        assertEquals(expectedValue.hashCode(), bigTree.calculate().hashCode());
     }
 
     @Test

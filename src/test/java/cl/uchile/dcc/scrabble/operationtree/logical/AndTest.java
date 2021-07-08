@@ -9,6 +9,7 @@ import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 import cl.uchile.dcc.scrabble.operationtree.Component;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Add;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Div;
+import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Mult;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Sub;
 import cl.uchile.dcc.scrabble.operationtree.operators.logical.And;
 import cl.uchile.dcc.scrabble.operationtree.operators.logical.Not;
@@ -58,7 +59,7 @@ public class AndTest extends TreeLogicalTest {
         and24 = new And(l9, l3); // Leaves: ScrabbleBool, ScrabbleString
         and25 = new And(l9, l7); // Leaves: ScrabbleBool, ScrabbleBinary
 
-        bigTree = new And(new Add(l1, l2), new Div(new Sub(l5, l6), new Not(new Or(l7, new And(l7, l9)))));
+        bigTree = new And(new Add(new Sub(l7, l8), new Mult(l1, new Div(l1, l2))), l9);
 
         comps = new Component[] {and1, and2, and3, and4, and5, and6, and7, and8, and9, and10, and11, and12, and13, and14,
                 and15, and16, and17, and18, and19, and20, and21, and22, and23, and24, and25};
@@ -134,9 +135,9 @@ public class AndTest extends TreeLogicalTest {
         assertEquals(expected12.hashCode(), and25.calculate().hashCode());
 
         // multiple operations tree
-       /* IScrabble expectedValue = new Scrabble_Float(-75*((22.5+902.345)/229));
+        IScrabble expectedValue = new Scrabble_Binary("100110011");
         assertEquals(expectedValue, bigTree.calculate());
-        assertEquals(expectedValue.hashCode(), bigTree.calculate().hashCode());*/
+        assertEquals(expectedValue.hashCode(), bigTree.calculate().hashCode());
     }
 
     @Test

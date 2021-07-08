@@ -102,3 +102,21 @@ In the case of the unary operation, which in this case is 'not', the result is a
 the same type. Thus, if you apply ```not``` to a *Scrabble_Binary* the result is a 
 *Scrabble_Binary* and if you do it with a *Scrabble_Bool*, 
 the result is a *Scrabble_Bool*.
+
+###Operation Tree
+If we want to do multiple operations, the best way to do it is with operation trees.
+To build those trees, you have to set your root -which is an operation-, then build
+your left branch and right branch *in that order* because the tree does the operations
+*inorder* (left-root-right).
+
+The operations follow the same rules as the Scrabble Types, and you can also do
+transformations to the nodes, just like the Scrabble Types. You have to be careful
+with the order of the operations, because there are some of them that are invalid.
+
+###Memory
+
+Creating Scrabble Types can be very memory expensive, so that's why we implemented
+Factories for each kind of Scrabble Type. So every time that you create a new variable,
+that variable is stored in a HashMap that contains other variables only if that variable
+hasn't been created yet. If you create a new variable that's already in the HashMap, the
+Factory returns the variable with the same value that was stored in it.
