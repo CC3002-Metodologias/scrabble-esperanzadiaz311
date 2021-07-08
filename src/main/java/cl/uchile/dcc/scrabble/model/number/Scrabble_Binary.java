@@ -40,6 +40,7 @@ public class Scrabble_Binary extends BuiltWithString{
     }
 
     /** Returns a copy of the same Scrabble Binary */
+    @Override
     public Scrabble_Binary toBinary(){
         return new Scrabble_Binary(this.s);
     }
@@ -62,6 +63,11 @@ public class Scrabble_Binary extends BuiltWithString{
         } else{
             return new Scrabble_Int(this.positiveBinToInt());
         }
+    }
+
+    @Override
+    public Scrabble_Bool toBool() {
+        return null;
     }
 
     @Override

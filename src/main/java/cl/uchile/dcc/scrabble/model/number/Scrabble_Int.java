@@ -45,7 +45,13 @@ public class Scrabble_Int implements IScrabble{
         return new Scrabble_Int(this.getInt());
     }
 
+    @Override
+    public Scrabble_Bool toBool() {
+        return null;
+    }
+
     /** Returns a Scrabble Binary */
+    @Override
     public Scrabble_Binary toBinary(){
         int abs_i = Math.abs(this.n);
         Scrabble_Binary b = positiveIntToBinary(abs_i);
@@ -56,7 +62,14 @@ public class Scrabble_Int implements IScrabble{
     }
 
     private Scrabble_Binary positiveIntToBinary(int num){
-        StringBuilder bin = new StringBuilder("1");
+        StringBuilder bin;
+        if(num == 0){
+            bin = new StringBuilder("0");
+        }
+        else {
+            bin = new StringBuilder("1");
+        }
+
         int index;
         int length = (int) (Math.log(num) / Math.log(2)) + 1;
         for(int i = 0; i<length-1;i++){

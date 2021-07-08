@@ -32,6 +32,12 @@ public interface IScrabble {
      */
     Scrabble_Float toFloat();
 
+    Scrabble_Binary toBinary();
+
+    Scrabble_Int toInt();
+
+    Scrabble_Bool toBool();
+
     /** Calls a method which makes the 'add' operation
      * @param a Scrabble Type that can do arithmetical operations
      * @return a Scrabble model that contains the result of the 'add' operation

@@ -26,6 +26,21 @@ public class Scrabble_String extends BuiltWithString {
         return null;
     }
 
+    @Override
+    public Scrabble_Binary toBinary() {
+        return null;
+    }
+
+    @Override
+    public Scrabble_Int toInt() {
+        return null;
+    }
+
+    @Override
+    public Scrabble_Bool toBool() {
+        return null;
+    }
+
     public Scrabble_String add(IScrabble s){
         return s.addCalledByString(this);
     }

@@ -32,6 +32,7 @@ public class Scrabble_Bool implements IScrabble{
     }
 
     /** Returns a copy of the same Scrabble Bool */
+    @Override
     public Scrabble_Bool toBool(){
         return new Scrabble_Bool(this.getBoolean());
     }
@@ -92,6 +93,16 @@ public class Scrabble_Bool implements IScrabble{
 
     @Override
     public Scrabble_Float toFloat() {
+        return null;
+    }
+
+    @Override
+    public Scrabble_Binary toBinary() {
+        return null;
+    }
+
+    @Override
+    public Scrabble_Int toInt() {
         return null;
     }
 

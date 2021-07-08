@@ -37,6 +37,21 @@ public class Scrabble_Float implements IScrabble{
         return new Scrabble_Float(this.getFloat());
     }
 
+    @Override
+    public Scrabble_Binary toBinary() {
+        return null;
+    }
+
+    @Override
+    public Scrabble_Int toInt() {
+        return null;
+    }
+
+    @Override
+    public Scrabble_Bool toBool() {
+        return null;
+    }
+
     /** Returns the double used in the constructor */
     public double getFloat(){ return f; }
 

@@ -1,11 +1,12 @@
 package cl.uchile.dcc.scrabble.operationtree.arithmetic;
 
 import cl.uchile.dcc.scrabble.model.IScrabble;
-import cl.uchile.dcc.scrabble.model.factories.*;
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
-import cl.uchile.dcc.scrabble.operationtree.operators.Leaf;
+import cl.uchile.dcc.scrabble.operationtree.Component;
+import cl.uchile.dcc.scrabble.operationtree.TreeArithmeticTest;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Add;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Div;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Mult;
@@ -19,53 +20,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class DivTest {
+public class DivTest extends TreeArithmeticTest {
     private Div div1, div2, div3, div4, div5, div6, div7, div8, div9, div10, div11, div12, div13, div14,
             div15, div16, div17, div18, div19, div20, div21, div22, div23, div24, div25, bigTree;
-    private Leaf l1, l2, l3, l4, l5, l6, l7, l8 , l9, l10;
-    private SIntFactory intFactory;
-    private SStringFactory stringFactory;
-    private SFloatFactory floatFactory;
-    private SBinaryFactory binaryFactory;
-    private SBoolFactory boolFactory;
+    private Component[] comps;
 
     @BeforeEach
     public void setUp(){
-        stringFactory = new SStringFactory();
-        intFactory = new SIntFactory();
-        floatFactory = new SFloatFactory();
-        binaryFactory = new SBinaryFactory();
-        boolFactory = new SBoolFactory();
-
-        intFactory.setValue(25);
-        l1 = new Leaf(intFactory.create());
-
-        intFactory.setValue(-100);
-        l2 = new Leaf(intFactory.create());
-
-        stringFactory.setValue("testing");
-        l3 = new Leaf(stringFactory.create());
-
-        stringFactory.setValue("new testing");
-        l4 = new Leaf(stringFactory.create());
-
-        floatFactory.setValue(22.5);
-        l5 = new Leaf(floatFactory.create());
-
-        floatFactory.setValue(-902.345);
-        l6 = new Leaf(floatFactory.create());
-
-        binaryFactory.setValue("100011010"); // 282
-        l7 = new Leaf(binaryFactory.create());
-
-        binaryFactory.setValue("11111111111111111111111111100111"); // -25
-        l8 = new Leaf(binaryFactory.create());
-
-        boolFactory.setValue(true);
-        l9 = new Leaf(boolFactory.create());
-
-        boolFactory.setValue(false);
-        l10 = new Leaf(boolFactory.create());
+        SetUp();
 
         div1 = new Div(l1, l2); // Leaves: ScrabbleInt x2
         div3 = new Div(l1, l5); // Leaves: ScrabbleInt, ScrabbleFloat
@@ -99,10 +61,13 @@ public class DivTest {
 
         bigTree = new Div(new Add(l1, l2), new Mult(new Sub(l5, l6), new Not(new Or(l7, new And(l7, l9)))));
 
+        comps = new Component[] {div1, div2, div3, div4, div5, div6, div7, div8, div9, div10, div11, div12, div13, div14,
+                div15, div16, div17, div18, div19, div20, div21, div22, div23, div24, div25};
+
     }
 
     @Test
-    public void DivTest(){
+    public void divTest(){
 
         // Basic Div Tree (Leaf <- Div -> Leaf)
 
@@ -181,5 +146,67 @@ public class DivTest {
         IScrabble expectedValue = new Scrabble_Float(-75/((22.5+902.345)*229));
         assertEquals(expectedValue, bigTree.calculate());
         assertEquals(expectedValue.hashCode(), bigTree.calculate().hashCode());
+    }
+
+    @Test
+    void toBinaryTest() {
+        IScrabble expected = new Scrabble_Binary("0");
+        IScrabble expected2 = new Scrabble_Binary("11111111111111111111111111110101");
+        IScrabble expected3 = new Scrabble_Binary("1011");
+
+        IScrabble[] expecting = {expected, expected, expected2, expected3};
+
+        toSBinaryTest(expecting, comps);
+    }
+
+    @Test
+    void toIntTest(){
+        IScrabble expected = new Scrabble_Int(0);
+        IScrabble expected2 = new Scrabble_Int(282/-25);
+        IScrabble expected3 = new Scrabble_Int(11);
+
+        IScrabble[] expecting = {expected, expected, expected2, expected3};
+
+        toSIntTest(expecting, comps);
+    }
+
+
+    @Test
+    void toFloatTest(){
+        IScrabble expected = new Scrabble_Float(0.0);
+        IScrabble expected2 = new Scrabble_Float(25/22.5);
+        IScrabble expected3 = new Scrabble_Float(22.5/-902.345);
+        IScrabble expected4 = new Scrabble_Float(22.5/25);
+        IScrabble expected5 = new Scrabble_Float(22.5/282);
+        IScrabble expected6 = new Scrabble_Float(-11.0);
+        IScrabble expected7 = new Scrabble_Float(11.0);
+
+        IScrabble[] expecting = {expected, expected2, expected, expected3, expected4, expected5,
+                expected6, expected7};
+
+        toSFloatTest(expecting, comps);
+    }
+
+    @Test
+    void toStringTest(){
+
+        IScrabble expected = new Scrabble_String("0");
+        IScrabble expected2 = new Scrabble_String(String.valueOf(25/22.5));
+        IScrabble expected3 = new Scrabble_String(String.valueOf(22.5/-902.345));
+        IScrabble expected4 = new Scrabble_String(String.valueOf(22.5/25));
+        IScrabble expected5 = new Scrabble_String(String.valueOf(22.5/282));
+        IScrabble expected6 = new Scrabble_String("11111111111111111111111111110101");
+        IScrabble expected7 = new Scrabble_String("1011");
+
+        IScrabble[] expecting = {expected, expected2, expected, expected3, expected4, expected5, expected6
+                , expected7};
+
+        toSStringTest(expecting, comps);
+    }
+
+    @Test
+    void toBoolTest(){
+        IScrabble[] expected = {};
+        toSBoolTest(expected, comps);
     }
 }
