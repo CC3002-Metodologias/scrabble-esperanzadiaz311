@@ -6,7 +6,6 @@ import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 import cl.uchile.dcc.scrabble.operationtree.Component;
-import cl.uchile.dcc.scrabble.operationtree.TreeArithmeticTest;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Add;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Div;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Mult;
@@ -26,7 +25,7 @@ public class SubTest extends TreeArithmeticTest {
     private Component[] comps;
 
     @BeforeEach
-    public void setUp(){
+    void setUp(){
         SetUp();
 
         sub1 = new Sub(l1, l2); // Leaves: ScrabbleInt x2
@@ -66,7 +65,7 @@ public class SubTest extends TreeArithmeticTest {
     }
 
     @Test
-    public void subTest(){
+    void subTest(){
 
         // Basic Sub Tree (Leaf <- Sub -> Leaf)
 

@@ -2,9 +2,11 @@ package cl.uchile.dcc.scrabble.operationtree.logical;
 
 import cl.uchile.dcc.scrabble.model.IScrabble;
 import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_Bool;
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 import cl.uchile.dcc.scrabble.operationtree.Component;
-import cl.uchile.dcc.scrabble.operationtree.TreeTest;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Add;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Div;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Sub;
@@ -17,12 +19,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class AndTest extends TreeTest {
+public class AndTest extends TreeLogicalTest {
     private And and1, and2, and3, and4, and5, and6, and7, and8, and9, and10, and11, and12, and13, and14,
             and15, and16, and17, and18, and19, and20, and21, and22, and23, and24, and25, bigTree;
+    private Component[] comps;
 
     @BeforeEach
-    public void setUp(){
+    void setUp(){
         SetUp();
 
         and1 = new And(l1, l2); // Leaves: ScrabbleInt x2
@@ -57,10 +60,13 @@ public class AndTest extends TreeTest {
 
         bigTree = new And(new Add(l1, l2), new Div(new Sub(l5, l6), new Not(new Or(l7, new And(l7, l9)))));
 
+        comps = new Component[] {and1, and2, and3, and4, and5, and6, and7, and8, and9, and10, and11, and12, and13, and14,
+                and15, and16, and17, and18, and19, and20, and21, and22, and23, and24, and25};
+
     }
 
     @Test
-    public void AndTest(){
+    void andTest(){
 
         // Basic And Tree (Leaf <- And -> Leaf)
 
@@ -133,28 +139,48 @@ public class AndTest extends TreeTest {
         assertEquals(expectedValue.hashCode(), bigTree.calculate().hashCode());*/
     }
 
-    @Override
-    protected void toSBinaryTest(IScrabble[] expected, Component[] comp) {
+    @Test
+    void toBinaryTest(){
+        IScrabble expected = new Scrabble_Binary("100000010");
+        IScrabble expected2 = new Scrabble_Binary("100011010");
 
+        IScrabble[] expecting = {expected, expected2, expected2};
+        toSBinaryTest(expecting, comps);
     }
 
-    @Override
-    protected void toSIntTest(IScrabble[] expected, Component[] comp) {
+    @Test
+    void toIntTest(){
+        IScrabble expected = new Scrabble_Int(258);
+        IScrabble expected2 = new Scrabble_Int(282);
 
+        IScrabble[] expecting = {expected, expected2, expected2};
+        toSIntTest(expecting, comps);
     }
 
-    @Override
-    protected void toSFloatTest(IScrabble[] expected, Component[] comp) {
+    @Test
+    void toFloatTest(){
+        IScrabble expected = new Scrabble_Float(258.0);
+        IScrabble expected2 = new Scrabble_Float(282.0);
 
+        IScrabble[] expecting = {expected, expected2, expected2};
+        toSFloatTest(expecting, comps);
     }
 
-    @Override
-    protected void toSStringTest(IScrabble[] expected, Component[] comp) {
+    @Test
+    void toStringTest(){
+        IScrabble expected = new Scrabble_String("100000010");
+        IScrabble expected2 = new Scrabble_String("100011010");
+        IScrabble expected3 = new Scrabble_String("false");
 
+        IScrabble[] expecting = {expected, expected2, expected3, expected2};
+        toSStringTest(expecting, comps);
     }
 
-    @Override
-    protected void toSBoolTest(IScrabble[] expected, Component[] comp) {
+    @Test
+    void toBoolTest(){
+        IScrabble expected = new Scrabble_Bool(false);
 
+        IScrabble[] expecting = {expected};
+        toSBoolTest(expecting, comps);
     }
 }

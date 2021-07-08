@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class NotTest extends TreeTest {
+public class NotTest extends TreeLogicalTest {
     private Not not1, not2, not3, not4, not5, bigTree;
 
     @BeforeEach
-    public void setUp(){
+    void setUp(){
         SetUp();
 
         not1 = new Not(l1);
@@ -28,31 +28,8 @@ public class NotTest extends TreeTest {
     }
 
     @Test
-    public void NotTest(){
+    void NotTest(){
     }
 
-    @Override
-    protected void toSBinaryTest(IScrabble[] expected, Component[] comp) {
 
-    }
-
-    @Override
-    protected void toSIntTest(IScrabble[] expected, Component[] comp) {
-
-    }
-
-    @Override
-    protected void toSFloatTest(IScrabble[] expected, Component[] comp) {
-
-    }
-
-    @Override
-    protected void toSStringTest(IScrabble[] expected, Component[] comp) {
-
-    }
-
-    @Override
-    protected void toSBoolTest(IScrabble[] expected, Component[] comp) {
-
-    }
 }

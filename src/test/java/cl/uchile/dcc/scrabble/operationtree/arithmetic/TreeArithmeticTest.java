@@ -1,11 +1,13 @@
-package cl.uchile.dcc.scrabble.operationtree;
+package cl.uchile.dcc.scrabble.operationtree.arithmetic;
 
 import cl.uchile.dcc.scrabble.model.IScrabble;
+import cl.uchile.dcc.scrabble.operationtree.Component;
+import cl.uchile.dcc.scrabble.operationtree.TreeTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class TreeArithmeticTest extends TreeTest{
+public class TreeArithmeticTest extends TreeTest {
 
     @Override
     protected void toSBinaryTest(IScrabble[] expected, Component[] comp){
