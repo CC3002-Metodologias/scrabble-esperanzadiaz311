@@ -4,6 +4,9 @@ import cl.uchile.dcc.scrabble.model.IScrabble;
 import cl.uchile.dcc.scrabble.model.factories.*;
 import cl.uchile.dcc.scrabble.operationtree.operators.Leaf;
 
+/** This class was created just for making it easier for setting up tests for operation trees
+ * @author Esperanza Díaz Adaro
+ */
 public abstract class TreeTest {
     protected Leaf l1, l2, l3, l4, l5, l6, l7, l8 , l9, l10;
     protected SIntFactory intFactory;
@@ -51,8 +54,12 @@ public abstract class TreeTest {
     }
 
     protected abstract void toSBinaryTest(IScrabble[] expected, Component[] comp);
+
     protected abstract void toSIntTest(IScrabble[] expected, Component[] comp);
+
     protected abstract void toSFloatTest(IScrabble[] expected, Component[] comp);
+
     protected abstract void toSStringTest(IScrabble[] expected, Component[] comp);
+
     protected abstract void toSBoolTest(IScrabble[] expected, Component[] comp);
 }

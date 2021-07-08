@@ -2,14 +2,19 @@ package cl.uchile.dcc.scrabble.model.factories;
 
 import cl.uchile.dcc.scrabble.model.IScrabble;
 import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_Bool;
-import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
 
 import java.util.HashMap;
 
+/** Factory for creating Scrabble Bool types
+ * @author Esperanza Díaz Adaro
+ */
 public class SBoolFactory implements ISFactory{
     private boolean bool;
     private HashMap<Boolean, Scrabble_Bool> booleans = new HashMap<>();
 
+    /** Sets the value of the Scrabble Bool that's going to be created
+     * @param b a boolean
+     */
     public void setValue(boolean b){
         bool = b;
     }

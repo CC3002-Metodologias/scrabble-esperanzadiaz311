@@ -32,15 +32,12 @@ public class Scrabble_Int implements IScrabble{
         return new Scrabble_String(this.toString());
     }
 
-    /** Transforms the Scrabble Float into a Scrabble Int
-     * @return a new Scrabble Float
-     */
     @Override
     public Scrabble_Float toFloat(){
         return new Scrabble_Float(Double.valueOf(this.toString()));
     }
 
-    /** Returns the same Scrabble Int */
+    @Override
     public Scrabble_Int toInt(){
         return new Scrabble_Int(this.getInt());
     }
@@ -50,7 +47,6 @@ public class Scrabble_Int implements IScrabble{
         return null;
     }
 
-    /** Returns a Scrabble Binary */
     @Override
     public Scrabble_Binary toBinary(){
         int abs_i = Math.abs(this.n);
@@ -61,6 +57,10 @@ public class Scrabble_Int implements IScrabble{
         return b;
     }
 
+    /** Trnasforms a positive int into a Scrabble Binary
+     * @param num a positive int
+     * @return the number transformed into a Scrabble Binary
+     */
     private Scrabble_Binary positiveIntToBinary(int num){
         StringBuilder bin;
         if(num == 0){
@@ -83,6 +83,10 @@ public class Scrabble_Int implements IScrabble{
         return new Scrabble_Binary(bin.toString());
     }
 
+    /** Calculates two's complement of a Scrabble Binary
+     * @param b a Scrabble Binary
+     * @return the two's complement in a Scrabble String
+     */
     private Scrabble_Binary twosComplement(Scrabble_Binary b){
         StringBuilder result = new StringBuilder(b.not().toString());
         for(int i = result.length()-1; i>=0; i--){

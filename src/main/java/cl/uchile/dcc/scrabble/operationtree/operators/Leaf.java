@@ -8,6 +8,9 @@ import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 import cl.uchile.dcc.scrabble.operationtree.OperationTree;
 
+/** Leaf of an operation tree
+ * @author Esperanza Díaz Adaro
+ */
 public class Leaf extends OperationTree  {
     IScrabble scrabble;
 

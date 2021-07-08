@@ -9,6 +9,9 @@ import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 import cl.uchile.dcc.scrabble.operationtree.Component;
 import cl.uchile.dcc.scrabble.operationtree.OperationTree;
 
+/** Node Or of an operation tree
+ * @author Esperanza Díaz Adaro
+ */
 public class Or extends OperationTree {
     public Or(Component left, Component right){
         super(left, right);

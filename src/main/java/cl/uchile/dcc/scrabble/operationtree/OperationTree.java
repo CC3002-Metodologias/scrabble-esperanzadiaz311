@@ -7,6 +7,9 @@ import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 
+/** Abstract class for all the elements of an operation tree
+ * @author Esperanza Díaz Adaro
+ */
 public abstract class OperationTree implements Component {
     protected Component left, right;
     public OperationTree(Component left, Component right){
@@ -17,6 +20,9 @@ public abstract class OperationTree implements Component {
     @Override
     public abstract IScrabble calculate();
 
+    /** Verifies if an element of a node is null or not
+     * @return a boolean checking if a element is null
+     */
     protected boolean nullCheck(){
         return this.calculate() == null;
     }

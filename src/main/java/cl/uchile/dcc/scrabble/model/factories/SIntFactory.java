@@ -5,10 +5,16 @@ import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 
 import java.util.HashMap;
 
+/** Factory for creating Scrabble Int types
+ * @author Esperanza Díaz Adaro
+ */
 public class SIntFactory implements ISFactory{
     private int i;
     private HashMap<Integer, Scrabble_Int> ints = new HashMap<>();
 
+    /** Sets the value of the Scrabble Int that's going to be created
+     * @param value an int
+     */
     public void setValue(int value) {
         i = value;
     }

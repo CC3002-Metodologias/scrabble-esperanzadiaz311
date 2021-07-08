@@ -2,14 +2,19 @@ package cl.uchile.dcc.scrabble.model.factories;
 
 import cl.uchile.dcc.scrabble.model.IScrabble;
 import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
-import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 
 import java.util.HashMap;
 
+/** Factory for creating Scrabble Binary types
+ * @author Esperanza Díaz Adaro
+ */
 public class SBinaryFactory implements ISFactory{
     private String bin;
     private HashMap<String, Scrabble_Binary> bins = new HashMap<>();
 
+    /** Sets the value of the Scrabble Binary that's going to be created
+     * @param s a String
+     */
     public void setValue(String s){
         bin = s;
     }

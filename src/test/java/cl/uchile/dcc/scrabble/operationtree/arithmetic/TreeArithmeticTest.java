@@ -7,6 +7,9 @@ import cl.uchile.dcc.scrabble.operationtree.TreeTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+/** Class for testing Arithmetic Nodes
+ * @author Esperanza Díaz Adaro
+ */
 public class TreeArithmeticTest extends TreeTest {
 
     @Override

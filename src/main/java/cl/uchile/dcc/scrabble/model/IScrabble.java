@@ -32,10 +32,19 @@ public interface IScrabble {
      */
     Scrabble_Float toFloat();
 
+    /** Transforms Int and Binary Scrabble types into a Scrabble Binary
+     * @return a Scrabble Binary
+     */
     Scrabble_Binary toBinary();
 
+    /** Transforms Int and Binary Scrabble types into a Scrabble Int
+     * @return a Scrabble Int
+     */
     Scrabble_Int toInt();
 
+    /** Returns a new Scrabble Bool
+     * @return a Scrabble Bool
+     */
     Scrabble_Bool toBool();
 
     /** Calls a method which makes the 'add' operation
