@@ -1,5 +1,10 @@
 package cl.uchile.dcc.scrabble.model;
 
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_Bool;
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -103,9 +108,9 @@ public class Scrabble_BinaryTest {
 
     @Test
     void orTest(){
-        IScrabbleLogical expected = new Scrabble_Binary("11111111111111111111111111111111");
-        IScrabbleLogical expected2 = new Scrabble_Binary(value4);
-        IScrabbleLogical expected3 = new Scrabble_Binary("00000000000000000000010011111110");
+        IScrabble expected = new Scrabble_Binary("11111111111111111111111111111111");
+        IScrabble expected2 = new Scrabble_Binary(value4);
+        IScrabble expected3 = new Scrabble_Binary("00000000000000000000010011111110");
         // Scrabble Binary or Scrabble Bool
             // true
         assertEquals(expected, bin4.or(t));
@@ -119,18 +124,28 @@ public class Scrabble_BinaryTest {
 
         assertEquals(expected3, bin4.or(bin1));
         assertEquals(expected3.hashCode(), bin4.or(bin1).hashCode());
+
+        // ScrabbleBinary || ScrabbleInt
+        assertNull(bin1.or(int1));
+
+        // ScrabbleBinary || ScrabbleFloat
+        assertNull(bin1.or(flt1));
+
+        // ScrabbleBinary || ScrabbleString
+        assertNull(bin1.or(str1));
+
     }
 
     @Test
     void andTest(){
-        IScrabbleLogical expected = new Scrabble_Binary("000000");
-        IScrabbleLogical expected2 = new Scrabble_Binary(value);
-        IScrabbleLogical expected3 = new Scrabble_Binary("00000000000000000000010011000010");
+        IScrabble expected = new Scrabble_Binary("000000");
+        IScrabble expected2 = new Scrabble_Binary(value);
+        IScrabble expected3 = new Scrabble_Binary("000010");
         // Scrabble Binary and Scrabble Bool
-            // true
+            // false
         assertEquals(expected, bin1.and(f));
         assertEquals(expected.hashCode(), bin1.and(f).hashCode());
-            // false
+            // bin1
         assertEquals(expected2, bin1.and(t));
         assertEquals(expected2.hashCode(), bin1.and(t).hashCode());
         // Scrabble Binary and Scrabble Binary
@@ -139,19 +154,28 @@ public class Scrabble_BinaryTest {
 
         assertEquals(expected3, bin4.and(bin1));
         assertEquals(expected3.hashCode(), bin4.and(bin1).hashCode());
+
+        // ScrabbleBinary && ScrabbleInt
+        assertNull(bin1.and(int1));
+
+        // ScrabbleBinary && ScrabbleFloat
+        assertNull(bin1.and(flt1));
+
+        // ScrabbleBinary && ScrabbleString
+        assertNull(bin1.and(str1));
     }
 
     @Test
     void notTest(){
-        IScrabbleLogical expected = new Scrabble_Binary("11111111111111111111101100010101");
+        IScrabble expected = new Scrabble_Binary("11111111111111111111101100010101");
         assertEquals(expected, bin4.not());
         assertEquals(expected.hashCode(), bin4.not().hashCode());
     }
 
     @Test
     void addTest(){
-        IScrabbleArithmetic expected1 = new Scrabble_Binary("10011001100");
-        IScrabbleArithmetic expected2 = new Scrabble_Binary("10001001111101100011");
+        IScrabble expected1 = new Scrabble_Binary("10011001100");
+        IScrabble expected2 = new Scrabble_Binary("10001001111101100011");
         // Scrabble Binary + Scrabble Binary
         assertEquals(expected1, bin3.add(bin4));
         assertEquals(expected1.hashCode(), bin3.add(bin4).hashCode());
@@ -160,12 +184,18 @@ public class Scrabble_BinaryTest {
         assertEquals(expected2.hashCode(), bin2.add(int1).hashCode());
         // Scrabble Binary + Scrabble Float -> null
         assertNull(bin1.add(flt1));
+
+        // ScrabbleBinary + ScrabbleBool
+        assertNull(bin1.add(t));
+
+        // ScrabbleBinary + ScrabbleString
+        assertNull(bin1.add(str1));
     }
 
     @Test
     void subTest(){
-        IScrabbleArithmetic expected = new Scrabble_Binary("11111111111111111111111010110101");
-        IScrabbleArithmetic expected2 = new Scrabble_Binary("11111111111101110110001101011111");
+        IScrabble expected = new Scrabble_Binary("11111111111111111111111010110101");
+        IScrabble expected2 = new Scrabble_Binary("11111111111101110110001101011111");
         // Scrabble Binary - Scrabble Binary
         assertEquals(expected, bin1.sub(bin2));
         assertEquals(expected.hashCode(), bin1.sub(bin2).hashCode());
@@ -174,12 +204,18 @@ public class Scrabble_BinaryTest {
         assertEquals(expected2.hashCode(), bin2.sub(int1).hashCode());
         // Scrabble Binary - Scrabble Float -> null
         assertNull(bin4.sub(flt1));
+
+        // ScrabbleBinary - ScrabbleBool
+        assertNull(bin1.sub(t));
+
+        // ScrabbleBinary - ScrabbleString
+        assertNull(bin1.sub(str1));
     }
 
     @Test
     void multTest(){
-        IScrabbleArithmetic expected = new Scrabble_Binary("1111001010110");
-        IScrabbleArithmetic expected2 = new Scrabble_Binary("101111011001010000101100");
+        IScrabble expected = new Scrabble_Binary("1111001010110");
+        IScrabble expected2 = new Scrabble_Binary("101111011001010000101100");
         // Scrabble Binary * Scrabble Binary
         assertEquals(expected, bin1.mult(bin2));
         assertEquals(expected.hashCode(), bin1.mult(bin2).hashCode());
@@ -188,13 +224,19 @@ public class Scrabble_BinaryTest {
         assertEquals(expected2.hashCode(), bin1.mult(int1).hashCode());
         // Scrabble Binary - Scrabble Float -> null
         assertNull(bin4.mult(flt1));
+
+        // ScrabbleBinary * ScrabbleBool
+        assertNull(bin1.mult(t));
+
+        // ScrabbleBinary * ScrabbleString
+        assertNull(bin1.mult(str1));
     }
 
     @Test
     void divTest(){
-        IScrabbleArithmetic expected = new Scrabble_Binary("10000");
-        IScrabbleArithmetic expected2 = new Scrabble_Binary("1011");
-        IScrabbleArithmetic expected3 = new Scrabble_Binary("0");
+        IScrabble expected = new Scrabble_Binary("10000");
+        IScrabble expected2 = new Scrabble_Binary("1011");
+        IScrabble expected3 = new Scrabble_Binary("0");
         // Scrabble Binary / Scrabble Binary
         assertEquals(expected, bin2.div(bin1));
         assertEquals(expected.hashCode(), bin2.div(bin1).hashCode());
@@ -206,5 +248,11 @@ public class Scrabble_BinaryTest {
         assertEquals(expected3.hashCode(), bin1.div(int1).hashCode());
         // Scrabble Binary / Scrabble Float -> null
         assertNull(bin4.div(flt1));
+
+        // ScrabbleBinary / ScrabbleBool
+        assertNull(bin1.div(t));
+
+        // ScrabbleBinary / ScrabbleString
+        assertNull(bin1.div(str1));
     }
 }

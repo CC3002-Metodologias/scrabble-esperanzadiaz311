@@ -1,5 +1,7 @@
 package cl.uchile.dcc.scrabble.model;
 
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
+
 /**
  * This class contains the necessary elements for the subclasses
  * who needs a Java String to be created

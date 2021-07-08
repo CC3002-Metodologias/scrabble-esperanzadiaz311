@@ -1,10 +1,14 @@
 package cl.uchile.dcc.scrabble.model;
 
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_Bool;
+import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Binary;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Float;
+import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Scrabble_StringTest {
     private Scrabble_String str1;
@@ -82,5 +86,55 @@ public class Scrabble_StringTest {
         // Scrabble String + Scrabble Float
         assertEquals(expected5, str1.add(flt1));
         assertEquals(expected5.hashCode(), str1.add(flt1).hashCode());
+    }
+
+    @Test
+    void toFloatTest(){
+        assertNull(str2.toFloat());
+    }
+
+    @Test
+    void subTest(){
+        assertNull(str1.sub(str2));
+        assertNull(str1.sub(int1));
+        assertNull(str1.sub(flt1));
+        assertNull(str1.sub(bool1));
+    }
+
+    @Test
+    void multTest(){
+        assertNull(str1.mult(str2));
+        assertNull(str1.mult(int1));
+        assertNull(str1.mult(flt1));
+        assertNull(str1.mult(bool1));
+    }
+
+    @Test
+    void divTest(){
+        assertNull(str1.div(str2));
+        assertNull(str1.div(int1));
+        assertNull(str1.div(flt1));
+        assertNull(str1.div(bool1));
+    }
+
+    @Test
+    void orTest(){
+        assertNull(str1.or(str2));
+        assertNull(str1.or(int1));
+        assertNull(str1.or(flt1));
+        assertNull(str1.or(bool1));
+    }
+
+    @Test
+    void andTest(){
+        assertNull(str1.and(str2));
+        assertNull(str1.and(int1));
+        assertNull(str1.and(flt1));
+        assertNull(str1.and(bool1));
+    }
+
+    @Test
+    void notTest(){
+        assertNull(str1.not());
     }
 }
