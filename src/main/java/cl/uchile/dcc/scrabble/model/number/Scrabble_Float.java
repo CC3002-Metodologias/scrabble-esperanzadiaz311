@@ -1,7 +1,6 @@
 package cl.uchile.dcc.scrabble.model.number;
 
 import cl.uchile.dcc.scrabble.model.IScrabble;
-import cl.uchile.dcc.scrabble.model.IScrabble;
 import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_Bool;
 import cl.uchile.dcc.scrabble.model.notnumber.Scrabble_String;
 
