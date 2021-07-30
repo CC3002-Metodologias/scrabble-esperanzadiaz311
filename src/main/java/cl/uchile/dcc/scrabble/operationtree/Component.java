@@ -12,6 +12,9 @@ import cl.uchile.dcc.scrabble.model.number.Scrabble_Int;
  */
 public interface Component {
 
+   void setLeft(Component left);
+   void setRight(Component right);
+
    /**
     * @return a Scrabble type with the result of the operation
     */

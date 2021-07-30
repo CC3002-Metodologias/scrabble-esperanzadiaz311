@@ -1,7 +1,6 @@
 package cl.uchile.dcc.scrabble.gui;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,10 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.FileInputStream;
@@ -27,6 +23,7 @@ import java.io.FileNotFoundException;
  */
 public class App extends Application {
     private static final String RESOURCE_PATH = "src/main/resources/";
+
     @Override
     public void start(Stage stage) throws FileNotFoundException {
         stage.setTitle("Welcome to Scrabble");
@@ -50,11 +47,18 @@ public class App extends Application {
         operation.setLayoutX(35);
         operation.setLayoutY(350);
 
+        var result = new Text("Your result is:");
+        result.setFont(font);
+        result.setFill(Color.BLUEVIOLET);
+        //operation.setWrappingWidth(170);
+        result.setLayoutX(525);
+        result.setLayoutY(350);
+
         // background
         var background = new ImageView(new Image(new FileInputStream(RESOURCE_PATH + "background.png")));
         Scene scene = new Scene(group, 800, 480);
 
-        // textbox
+        // input value
         var label1 = new Text("Value:");
         TextField textField = new TextField();
         HBox hb = new HBox();
@@ -63,11 +67,20 @@ public class App extends Application {
         hb.getChildren().addAll(label1, textField);
         hb.setSpacing(10);
 
+        // display result
+        var label2 = new Text("");
+        TextField textField2 = new TextField();
+        HBox hb2 = new HBox();
+        hb2.setLayoutX(573);
+        hb2.setLayoutY(375);
+        hb2.getChildren().addAll(label2, textField2);
+
         // add background
         group.getChildren().add(background);
-        group.getChildren().addAll(variable, operation);
+        group.getChildren().addAll(variable, operation, result);
 
         group.getChildren().add(hb);
+        group.getChildren().add(hb2);
 
         // add buttons (creates scrabble types)
         group.getChildren().addAll(s_buttons);
@@ -77,20 +90,11 @@ public class App extends Application {
 
         // add trigger buttons
         group.getChildren().addAll(trig_buttons);
+        //group.getChildren().add(scroll);
+        subWindow(group);
 
         stage.setScene(scene);
-
-        VBox vBox = new VBox(new Label("A JavaFX Label"));
-        Scene scene2 = new Scene(vBox, 525, 277);
-        Stage stage2 = new Stage();
-        stage2.setX(582);
-        stage2.setY(143);
-        stage2.setScene(scene2);
-        stage2.initStyle(StageStyle.UNDECORATED);
-        stage2.initOwner(stage);
-
         stage.show();
-        stage2.showAndWait();
     }
     private @NotNull RadioButton[] scrabbleRadioButtons(){
         final ToggleGroup group = new ToggleGroup();
@@ -183,23 +187,47 @@ public class App extends Application {
     private @NotNull Button[] buttons(){
         Button create = new Button("Create");
         Button apply = new Button("Apply Operation");
-        Button clear = new Button("Clear");
-        Button exit = new Button("Exit");
+        Button clear = new Button("Clear All");
+        Button calculate = new Button("Calculate");
 
         create.setLayoutX(100);
         create.setLayoutY(245);
         apply.setLayoutX(30);
         apply.setLayoutY(400);
-        clear.setLayoutX(530);
-        clear.setLayoutY(400);
+        clear.setLayoutX(650+25);
+        clear.setLayoutY(425);
+        calculate.setLayoutX(530+25);
+        calculate.setLayoutY(425);
 
-        Button[] buttons = {create, apply, clear};
+        Button[] buttons = {create, apply, clear, calculate};
         return buttons;
     }
 
-    /*private @NotNull Window subWindow(){
+    private @NotNull void subWindow(@NotNull Group group) throws FileNotFoundException {
+        VBox box = new VBox();
+        box.setPrefSize(1000, 700);
+        ScrollPane scroll = new ScrollPane();
+        scroll.setPrefSize(525, 280);
+        scroll.setLayoutX(274);
+        var add = new ImageView(new Image(new FileInputStream(RESOURCE_PATH + "add.png")));
+        var sub = new ImageView(new Image(new FileInputStream(RESOURCE_PATH + "sub.png")));
+        var arrow = new ImageView(new Image(new FileInputStream(RESOURCE_PATH + "arrow.png")));
+        add.setFitWidth(50);
+        add.setFitHeight(50);
+        add.setTranslateX(500);
+        add.setTranslateY(5);
+        sub.setFitWidth(50);
+        sub.setFitHeight(50);
+        sub.setTranslateX(550);
+        arrow.setFitHeight(50);
+        arrow.setFitWidth(50);
+        box.getChildren().add(add);
+        box.getChildren().add(sub);
+        box.getChildren().add(arrow);
+        scroll.setContent(box);
+        group.getChildren().add(scroll);
 
-    }*/
+    }
 
     public static void main(String[] args) {
         launch();
