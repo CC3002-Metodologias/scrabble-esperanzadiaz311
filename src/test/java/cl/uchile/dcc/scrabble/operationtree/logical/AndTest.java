@@ -12,8 +12,6 @@ import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Div;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Mult;
 import cl.uchile.dcc.scrabble.operationtree.operators.arithmetic.Sub;
 import cl.uchile.dcc.scrabble.operationtree.operators.logical.And;
-import cl.uchile.dcc.scrabble.operationtree.operators.logical.Not;
-import cl.uchile.dcc.scrabble.operationtree.operators.logical.Or;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
