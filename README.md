@@ -103,7 +103,8 @@ the same type. Thus, if you apply ```not``` to a *Scrabble_Binary* the result is
 *Scrabble_Binary* and if you do it with a *Scrabble_Bool*, 
 the result is a *Scrabble_Bool*.
 
-###Operation Tree
+### Operation Tree
+
 If we want to do multiple operations, the best way to do it is with operation trees.
 To build those trees, you have to set your root -which is an operation-, then build
 your left branch and right branch *in that order* because the tree does the operations
@@ -113,10 +114,33 @@ The operations follow the same rules as the Scrabble Types, and you can also do
 transformations to the nodes, just like the Scrabble Types. You have to be careful
 with the order of the operations, because there are some of them that are invalid.
 
-###Memory
+### Memory
 
 Creating Scrabble Types can be very memory expensive, so that's why we implemented
 Factories for each kind of Scrabble Type. So every time that you create a new variable,
 that variable is stored in a HashMap that contains other variables only if that variable
 hasn't been created yet. If you create a new variable that's already in the HashMap, the
 Factory returns the variable with the same value that was stored in it.
+
+## Graphic Interface (*halfway implemented*)
+
+### How to use
+
+First, you have to create a variable, selecting an option of Scrabble type
+then writing a valid value for the variable. After that, you have to press the ```Create```
+button. You can create one or two variables depending on the operation that you want to apply.
+
+The next step is apply an operation, you have to select an operation then press the ```Apply```
+button.
+
+You can repeat the first two steps as many times as you want.
+
+The final step is press the ```Calculate``` button, which will calculate the value of the
+operations that you've entered before. At the same time, the tree with all the operations
+will show up.
+
+You can keep doing operations, but if you want to erase all the history of calculations, you
+have to press the ```Clear``` button.
+
+All the functionalities of the interface are not implemented.
+

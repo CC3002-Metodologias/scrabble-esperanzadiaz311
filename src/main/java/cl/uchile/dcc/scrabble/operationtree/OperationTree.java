@@ -18,16 +18,6 @@ public abstract class OperationTree implements Component {
     }
 
     @Override
-    public void setLeft(Component left) {
-        this.left = left;
-    }
-
-    @Override
-    public void setRight(Component right) {
-        this.right = right;
-    }
-
-    @Override
     public abstract IScrabble calculate();
 
     /** Verifies if an element of a node is null or not
